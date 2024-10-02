@@ -16,9 +16,9 @@ This project is a simple Task Manager API built using Node.js, Express, and Mong
 
 ## Quick Start
 
-1. Install the libraries (`dotenv, express, mongoose, nodemon, jest, supertest, bcrypt`):
+1. Install the libraries (`dotenv, express, mongoose, nodemon, jest, supertest, bcrypt, jsonwebtoken, ejs`):
     ```bash
-    npm install dotenv express mongoose nodemon jest supertest bcrypt
+    npm install dotenv express mongoose nodemon jest supertest bcrypt jsonwebtoken ejs
     ```
 
 2. Set up environment variables:
@@ -97,7 +97,7 @@ YYYYYYYY
     │   ├── driver
     │   ├── order
     │   └── restaurant
-    ├── view        # UI
+    ├── views        # UI
     │   ├── core
     │   ├── driver
     │   ├── order
