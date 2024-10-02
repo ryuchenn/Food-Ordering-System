@@ -16,7 +16,7 @@ mongoose.connect("mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_P
         .then(()=> console.log("Connect MongoDB Success!"))
         .catch(err => console.err("Connect MongoDB Error: "+ err))
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: true }));
 
 
 //////////// MongoDB and Mongoose ////////////
