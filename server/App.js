@@ -19,22 +19,21 @@ app.use(express.json());
 
 //////////// MongoDB and Mongoose ////////////
 // Loading & Initialize Model
-const { TaskSchema } = require('./model/Sample_md');
-// const { XXXchema } = require('./model/restaurant/XXX_md');
-// const { YYYSchema } = require('./model/order/YYY_md');
-// const { ZZZSchema } = require('./model/driver/ZZZ_md');
-
+// const { TaskSchema } = require('./model/Sample_md');
+const { RestaurantSchema } = require('./model/restaurant/Restaurant_md');
+const { OrderSchema } = require('./model/order/Order_md');
+const { DriverSchema } = require('./model/driver/Driver_md');
+const { AccountSchema } = require('./model/core/Account_md');
 
 //////////// RESTfulAPI Routes && Input Validation && Error Handling ////////////
-// Import the route. 
-app.use('/sample', require('./routes/Sample_rt'))   // (GET,POST,....) EX: /sample/task
-// app.use('/restaurant', require('./routes/restaurant/'))
-// app.use('/order', require('./routes/order/'))
-// app.use('/driver', require('./routes/driver/'))
-
+// app.use('/sample', require('./routes/Sample_rt'))   //// Example: GET localhost:3005/sample/task
+app.use('/restaurant', require('./routes/restaurant/Restaurant_rt'))
+app.use('/order', require('./routes/order/Order_rt'))
+app.use('/driver', require('./routes/driver/Driver_rt'))
+app.use('/account', require('./routes/core/Account_rt'))
 
 //////////// 6. Testing ////////////
-// Code at server/tests/assigment1.test.js
+// Code at server/tests/XXXXX.test.js
 
 
 // Unit test don't run this

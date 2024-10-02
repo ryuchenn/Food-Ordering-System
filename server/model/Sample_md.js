@@ -1,8 +1,5 @@
-//////////// 2. MongoDB and Mongoose ////////////
-
 const mongoose = require('mongoose');
 
-// 2-1. Create schema
 /** 
  * Task Manager
  * @param {string} title - Task. This column is required.
@@ -34,10 +31,5 @@ const TaskSchema = new mongoose.Schema({
         default: false,
     },
 })
-
-//// Create table 
-// const CreateTaskModel = () => {
-//     return mongoose.models.Assignment1_Tasks || mongoose.model('Assignment1_Tasks', TaskSchema);
-// }
 
 module.exports = mongoose.model('Sample', TaskSchema)
