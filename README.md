@@ -5,7 +5,7 @@ Some GIF or pictures at here.
 This project is a simple Task Manager API built using Node.js, Express, and MongoDB with Mongoose. It allows users to create, read, update, and delete tasks. Tasks have attributes like title, description, due date, priority, and completion status.
 
 <div align=“center”>
-    <img src="server/public/other/basic_structure/Workflow.png" alt=“Workflow” height=“450” width=“auto”/>
+    <img src="server/public/other/basic_structure/Workflow.png" alt=“Workflow” height=“200” width=“auto”/>
 </div>
 
 
