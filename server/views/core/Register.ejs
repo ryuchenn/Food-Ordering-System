@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+        h1 {
+            max-width: 175px;
+            margin: 0 auto;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            text-align: right;
+            padding-right: 10px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .radio-group {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .radio-group input {
+            margin-left: 10px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Register</h1>
+    <form action="/account/register" method="POST">
+        <label for="UserName">Username</label>
+        <input type="text" name="UserName" required>
+
+        <label for="Password">Password</label>
+        <input type="password" name="Password" required>
+
+        <label for="ConfirmPassword">ConfirmPassword</label>
+        <input type="password" name="ConfirmPassword" required>
+
+        <label for="Email">Email</label>
+        <input type="email" name="Email" required>
+
+        <label for="Phone">Phone</label>
+        <input type="text" name="Phone" id="Phone">
+
+        <label for="Address">Home or Restaurant Address</label>
+        <input type="text" name="Address" id="Address">
+
+        <label>Role:</label>
+        <div class="radio-group">
+            <input type="radio" name="Role" value="Restaurant" id="IsRestaurant" required>
+            <label for="IsRestaurant" style="text-align:left;">Restaurant</label>
+            <input type="radio" name="Role" value="Driver" id="IsDriver">
+            <label for="IsDriver" style="text-align:left;">Driver</label>
+            <input type="radio" name="Role" value="Customer" id="IsCustomer" required>
+            <label for="IsCustomer" style="text-align:left;">Customer</label>
+        </div>
+
+        <!-- Driver Information -->
+        <div id="DriverFields" class="hidden">
+            <h3>Driver Information</h3>
+            <label for="DriverFirstName">First Name</label>
+            <input type="text" name="DriverFirstName" id="DriverFirstName">
+
+            <label for="DriverMiddleName">Middle Name</label>
+            <input type="text" name="DriverMiddleName" id="DriverMiddleName">
+
+            <label for="DriverLastName">Last Name</label>
+            <input type="text" name="DriverLastName" id="DriverLastName">
+
+            <label for="VehicleBrand">Vehicle Brand</label>
+            <input type="text" name="VehicleBrand" id="VehicleBrand">
+
+            <label for="VehicleModel">Vehicle Model</label>
+            <input type="text" name="VehicleModel" id="VehicleModel">
+
+            <label for="VehicleColor">Vehicle Color</label>
+            <input type="text" name="VehicleColor" id="VehicleColor">
+
+            <label for="VehicleLicense">Vehicle License</label>
+            <input type="text" name="VehicleLicense" id="VehicleLicense">
+        </div>
+
+        <!-- Restaurant Information -->
+        <div id="RestaurantFields" class="hidden">
+            <h3>Restaurant Information</h3>
+            <label for="RestaurantName">Restaurant Name</label>
+            <input type="text" name="RestaurantName" id="RestaurantName">
+
+            <label for="OpenHours">Open Hours</label>
+            <input type="text" name="OpenHours" id="OpenHours">
+
+            <label for="Cuisine">Cuisine ( Japanese, French, Thai.... )</label>
+            <input type="text" name="Cuisine" id="Cuisine">
+        </div>
+
+        <!-- Customer Information -->
+        <div id="CustomerFields" class="hidden">
+            <h3>Customer Information</h3>
+            <label for="CustomerFirstName">First Name</label>
+            <input type="text" name="CustomerFirstName" id="CustomerFirstName">
+
+            <label for="CustomerMiddleName">Middle Name</label>
+            <input type="text" name="CustomerMiddleName" id="CustomerMiddleName">
+
+            <label for="CustomerLastName">Last Name</label>
+            <input type="text" name="CustomerLastName" id="CustomerLastName">
+        </div>
+
+        <button type="submit">Register</button>
+        <% if(typeof errorMessage !=='undefined' ) { %>
+            <p class="error">
+                <%= errorMessage %>
+            </p>
+        <% } %>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const DriverFields = document.getElementById('DriverFields');
+            const RestaurantFields = document.getElementById('RestaurantFields');
+            const CustomerFields = document.getElementById('CustomerFields');
+            const radioButtons = document.querySelectorAll('input[name="Role"]');
+            
+            function clearFields(fields) {
+                const inputs = fields.querySelectorAll('input[type="text"]');
+                inputs.forEach(input => input.value = '');
+            }
+
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'Driver') {
+                        DriverFields.classList.remove('hidden');
+                        RestaurantFields.classList.add('hidden');
+                        CustomerFields.classList.add('hidden');
+                        clearFields(RestaurantFields);
+                        clearFields(CustomerFields);
+                    } else if (this.value === 'Restaurant') {
+                        DriverFields.classList.add('hidden');
+                        RestaurantFields.classList.remove('hidden');
+                        CustomerFields.classList.add('hidden');
+                        clearFields(DriverFields);
+                        clearFields(CustomerFields);
+                    } else if (this.value === 'Customer') {
+                        DriverFields.classList.add('hidden');
+                        RestaurantFields.classList.add('hidden');
+                        CustomerFields.classList.remove('hidden');
+                        clearFields(DriverFields);
+                        clearFields(RestaurantFields);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

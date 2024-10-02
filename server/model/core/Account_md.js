@@ -23,28 +23,17 @@ const AccountSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    FirstName: {
-        type: String,
-        required: true,
-    },
-    MiddleName: {
-        type: String,
-        required: false,
-    },
-    LastName: {
-        type: String,
-        required: true,
-    },
-    Email: {
-        type: String,
-        required: true,
-    },
     IsRestaurant: {
         type: Boolean,
         required: true,
         default: false
     },
     IsDriver: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    IsCustomer: {
         type: Boolean,
         required: true,
         default: false

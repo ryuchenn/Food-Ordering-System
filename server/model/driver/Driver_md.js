@@ -30,6 +30,18 @@ const DriverSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    Email: {
+        type: String,
+        required: true, 
+    },
+    Phone: {
+        type: String,
+        required: true, 
+    },
+    Address: {
+        type: String,
+        required: true,
+    },
     VehicleBrand: {
         type: String,
         required: true,
@@ -44,7 +56,7 @@ const DriverSchema = new mongoose.Schema({
     },
     VehicleLicense: {
         type: String,
-        required: false,
+        required: true,
     },
 });
 

@@ -23,10 +23,13 @@ app.use(express.urlencoded({ extended: true }));
 // Loading & Initialize Model
 // const { TaskSchema } = require('./model/Sample_md');
 const { RestaurantSchema } = require('./model/restaurant/Restaurant_md');
+const { MenuSchema } = require('./model/restaurant/Menu_md');
 const { OrderSchema } = require('./model/order/Order_md');
 const { DriverSchema } = require('./model/driver/Driver_md');
 const { AccountSchema } = require('./model/core/Account_md');
-app.set("view engine", "ejs") // above tje endpoints. below the "const" statments
+const { CustomerSchema } = require('./model/core/Customer_md');
+
+app.set("view engine", "ejs") // above the endpoints. below the "const" statments
 app.set("views", path.join(__dirname, "views")) 
 
 //////////// RESTfulAPI Routes && Input Validation && Error Handling ////////////

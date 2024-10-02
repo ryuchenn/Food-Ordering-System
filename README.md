@@ -5,7 +5,7 @@ Some GIF or pictures at here.
 This project is a simple Task Manager API built using Node.js, Express, and MongoDB with Mongoose. It allows users to create, read, update, and delete tasks. Tasks have attributes like title, description, due date, priority, and completion status.
 
 <div align=“center”>
-    <img src="server/public/other/basic_structure/Workflow.png" alt=“Workflow” height=“200” width=“auto”/>
+    <img src="server/public/other/basic_structure/Workflow.png" alt=“Workflow” height=“200” width=“400”/>
 </div>
 
 
@@ -30,6 +30,11 @@ This project is a simple Task Manager API built using Node.js, Express, and Mong
      DB_NAME=yourMongoDBClusterName
      DB_USE=yourDatabaseName
      DB_DEFAULT_PORT=3005
+     LOGGING_JWT_SECRET=YourSecretKey
+     DB_ACCOUNT_PREFIX=/account
+     DB_RESTAURANT_PREFIX=/restaurant
+     DB_ORDER_PREFIX=/order
+     DB_DRIVER_PREFIX=/driver
      ```
 
 3. Make sure MongoDB is running (either locally or via MongoDB Atlas).
