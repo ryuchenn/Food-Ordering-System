@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update User</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+        h1 {
+            max-width: 175px;
+            margin: 0 auto;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            text-align: right;
+            padding-right: 10px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .radio-group {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .radio-group input {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Update</h1>
+    <!-- Browser just support GET and POST. I use POST to replace PUT to send my parameter -->
+    <form action="/account/update" method="POST">
+        <label for="UserName">Username</label>
+        <input type="text" name="UserName" value="<%= UserData.UserName %>" readonly>
+
+        <!-- Password has been encrypted. It can't show in here. -->
+        <!-- <label for="Password">Password</label>
+        <input type="password" name="Password" required> -->
+        
+        <label for="Email">Email</label>
+        <input type="email" name="Email" value="<%= RoleData.Email %>" readonly>
+
+        <label for="Phone">Phone</label>
+        <input type="text" name="Phone" id="Phone" value="<%= RoleData.Phone %>">
+
+        <label for="Address">Home or Restaurant Address</label>
+        <input type="text" name="Address" id="Address" value="<%= RoleData.Address %>">
+        
+        <!-- Driver Information -->
+        <div id="DriverFields" class="<%= UserData.IsDriver ? '' : 'hidden' %>">
+            <h3>Driver Information</h3>
+            <label for="DriverFirstName">First Name</label>
+            <input type="text" name="DriverFirstName" id="DriverFirstName" value="<%= RoleData.FirstName %>">
+
+            <label for="DriverMiddleName">Middle Name</label>
+            <input type="text" name="DriverMiddleName" id="DriverMiddleName" value="<%= RoleData.MiddleName %>">
+
+            <label for="DriverLastName">Last Name</label>
+            <input type="text" name="DriverLastName" id="DriverLastName" value="<%= RoleData.LastName %>">
+
+            <label for="VehicleBrand">Vehicle Brand</label>
+            <input type="text" name="VehicleBrand" id="VehicleBrand" value="<%= RoleData.VehicleBrand %>">
+
+            <label for="VehicleModel">Vehicle Model</label>
+            <input type="text" name="VehicleModel" id="VehicleModel" value="<%= RoleData.VehicleModel %>">
+
+            <label for="VehicleColor">Vehicle Color</label>
+            <input type="text" name="VehicleColor" id="VehicleColor" value="<%= RoleData.VehicleColor %>">
+
+            <label for="VehicleLicense">Vehicle License</label>
+            <input type="text" name="VehicleLicense" id="VehicleLicense" value="<%= RoleData.VehicleLicense %>">
+        </div>
+
+        <!-- Restaurant Information -->
+        <div id="RestaurantFields" class="<%= UserData.IsRestaurant ? '' : 'hidden' %>">
+            <h3>Restaurant Information</h3>
+            <label for="RestaurantName">Restaurant Name</label>
+            <input type="text" name="RestaurantName" id="RestaurantName" value="<%= RoleData.Name %>">
+
+            <label for="OpenHours">Open Hours</label>
+            <input type="text" name="OpenHours" id="OpenHours" value="<%= RoleData.OpenHours %>">
+
+            <label for="Cuisine">Cuisine</label>
+            <input type="text" name="Cuisine" id="Cuisine" value="<%= RoleData.Cuisine %>">
+        </div>
+
+         <!-- Customer Information -->
+         <div id="CustomerFields"  class="<%= UserData.IsCustomer ? '' : 'hidden' %>">
+            <h3>Customer Information</h3>
+            <label for="CustomerFirstName">First Name</label>
+            <input type="text" name="CustomerFirstName" id="CustomerFirstName" value="<%= RoleData.FirstName%>">
+
+            <label for="CustomerMiddleName">Middle Name</label>
+            <input type="text" name="CustomerMiddleName" id="CustomerMiddleName" value="<%= RoleData.MiddleName%>">
+
+            <label for="CustomerLastName">Last Name</label>
+            <input type="text" name="CustomerLastName" id="CustomerLastName" value="<%= RoleData.LastName%>">
+        </div>
+
+        <label>Role:</label>
+        <div class="radio-group">
+            <input type="radio" name="Role" value="Restaurant" id="IsRestaurant" <%= UserData.IsRestaurant ? 'checked' : '' %> disabled>
+            <label for="IsRestaurant" style="text-align:left;">Restaurant</label>
+            <input type="radio" name="Role" value="Driver" id="IsDriver" <%= UserData.IsDriver ? 'checked' : '' %> disabled>
+            <label for="IsDriver" style="text-align:left;">Driver</label>
+            <input type="radio" name="Role" value="Customer" id="IsCustomer" <%= UserData.IsCustomer ? 'checked' : '' %> disabled>
+            <label for="IsCustomer" style="text-align:left;">Customer</label>
+        </div>
+
+        <button type="submit">Update</button>
+        <% if (typeof ErrorMessage !== 'undefined') { %>
+            <p class="error" style="color: red;">
+                <%= ErrorMessage %>
+            </p>
+        <% } else if (typeof SuccessMessage !== 'undefined') { %>
+            <!-- 如果没有错误消息，检查是否存在成功消息，蓝色字体显示 -->
+            <p class="success" style="color: blue;">
+                <%= SuccessMessage %>
+            </p>
+        <% } %>
+    </form>
+    <script>
+
+    </script>
+</body>
+</html>

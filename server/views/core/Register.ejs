@@ -67,7 +67,7 @@
         <div class="radio-group">
             <input type="radio" name="Role" value="Restaurant" id="IsRestaurant" required>
             <label for="IsRestaurant" style="text-align:left;">Restaurant</label>
-            <input type="radio" name="Role" value="Driver" id="IsDriver">
+            <input type="radio" name="Role" value="Driver" id="IsDriver" required>
             <label for="IsDriver" style="text-align:left;">Driver</label>
             <input type="radio" name="Role" value="Customer" id="IsCustomer" required>
             <label for="IsCustomer" style="text-align:left;">Customer</label>
@@ -125,9 +125,9 @@
         </div>
 
         <button type="submit">Register</button>
-        <% if(typeof errorMessage !=='undefined' ) { %>
+        <% if(typeof ErrorMessage !=='undefined' ) { %>
             <p class="error">
-                <%= errorMessage %>
+                <%= ErrorMessage %>
             </p>
         <% } %>
     </form>

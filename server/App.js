@@ -11,12 +11,14 @@ require("dotenv").config();
 const express = require('express')
 const mongoose = require('mongoose')
 const path = require("path");
+const cookieParser = require('cookie-parser');
 const app = express()
 mongoose.connect("mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@" + process.env.DB_NAME + ".5nu9r.mongodb.net/" + process.env.DB_USE)
         .then(()=> console.log("Connect MongoDB Success!"))
         .catch(err => console.err("Connect MongoDB Error: "+ err))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 
 //////////// MongoDB and Mongoose ////////////

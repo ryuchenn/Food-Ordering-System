@@ -17,11 +17,11 @@ const UserAuthCheck = (req, res, next) => {
 };
 
 /**
- * Check registration fields
+ * Check registration fields when insert
  * @param {form}  - input form data
  * @returns  - error message or success message
  */
-function ValidateFormData(data) {
+function ValidateInsertFormData(data) {
     if (!data.Username || data.Username.trim() === '')
         return { valid: false, message: 'Username is required.' };
 
@@ -75,6 +75,49 @@ function ValidateFormData(data) {
 }
 
 /**
+ * Check data when user wants to update their basic information
+ * @param {form} - update form data
+ * @returns  - error message or success message
+ */
+function ValidateUpdateFormData(data) {
+
+    if (!data.Phone || data.Phone === "")
+        return { valid: false, message: 'Phone is required' };
+    if (!data.Address || data.Address === "")
+        return { valid: false, message: 'Address is required' };
+
+    if (data.IsRestaurant){
+        console.log(data)
+        if (!data.Name || data.Name === "")
+            return { valid: false, message: 'Restaurant Name is required' };
+        if (!data.OpenHours || data.OpenHours === "")
+            return { valid: false, message: 'OpenHours is required' };
+        if (!data.Cuisine || data.Cuisine === "")
+            return { valid: false, message: 'Cuisine is required' };
+    }else if (data.IsDriver){
+        if (!data.FirstName || data.FirstName === "")
+            return { valid: false, message: 'First Name is required' };
+        if (!data.LastName || data.LastName === "")
+            return { valid: false, message: 'Last Name is required' };
+        if (!data.VehicleBrand || data.VehicleBrand === "")
+            return { valid: false, message: 'Vehicle Brand is required' };
+        if (!data.VehicleModel || data.VehicleModel === "")
+            return { valid: false, message: 'Vehicle Model is required' };
+        if (!data.VehicleColor || data.VehicleColor === "")
+            return { valid: false, message: 'Vehicle Color is required' };
+        if (!data.VehicleLicense || data.VehicleLicense === "")
+            return { valid: false, message: 'Vehicle License is required' };
+    }else if (data.IsCustomer){
+        if (!data.FirstName || data.FirstName === "")
+            return { valid: false, message: 'First Name is required' };
+        if (!data.LastName || data.LastName === "")
+            return { valid: false, message: 'Last Name is required' };
+    }
+
+    return { valid: true, message: 'Validation successful.' }; // return true if all pass
+}
+
+/**
  * 1. At least 8～15 characters 
  * 2. At least a uppercase, a lowercase, a number, and a special character.
  * @param {form}  - input password
@@ -96,5 +139,5 @@ function validatePassword(Password) {
     };
 }
 
-module.exports = { UserAuthCheck, ValidateFormData };
+module.exports = { UserAuthCheck, ValidateInsertFormData, ValidateUpdateFormData };
 
