@@ -23,5 +23,29 @@ const VerifyTokenFromCookie = (req, res, next) => {
     }
 }
 
+/**
+ * This function can use in GET but some features don't need the privilege. For setting the token or setting the UserID.
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns 
+ */
+const SetUserInformation = (req, res, next) => {
+    const token = req.cookies.token;
 
-module.exports = VerifyTokenFromCookie;
+    try {
+        if(token){
+            const decoded = jwt.verify(token, process.env.LOGGING_JWT_SECRET);
+            req.UserID = decoded.ID;
+            req.UserName = decoded.UserName;
+            req.IsRestaurant = decoded.IsRestaurant;
+            req.IsDriver = decoded.IsDriver;
+            req.IsCustomer = decoded.IsCustomer;
+        }
+    } catch (error) {
+    }
+    next();
+
+}
+
+module.exports = {VerifyTokenFromCookie, SetUserInformation};

@@ -4,8 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/style/App.css">
+    <link rel="stylesheet" href="/style/Restaurant.css">
+    <style>
+        .image-container {
+            position: relative;
+            width: 100vw;
+            height: 30vw;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        #Test {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: opacity(30%);
+        }
+
+        .image-text {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1> I AM RESTAURANT HOME PAGE</h1>
+    <div class="image-container">
+        <%- include('../../component/restaurant/Restaurant_hd') %> <!-- Header -->
+        <img id="Test" src="/restaurant/Test.jpg" alt="Menu Icon">
+        <!-- Bottom text -->
+        <div class="image-text">123</div>
+    </div>
+
+    <main style="padding: 20px;">
+        <h1 style="text-align: center;">OMG Japanese Restaurant</h1>
+        <p style="text-align: center;">Enjoy the finest Japanese cuisine in Canada!</p>
+    </main>
+
+    <div id="div-bottom"></div> <!-- Make page looks not too empty -->
+    <%- include('../../component/restaurant/Restaurant_ft') %> <!-- Footer -->
 </body>
 </html>

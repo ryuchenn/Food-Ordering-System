@@ -1,48 +1,47 @@
 const mongoose = require('mongoose');
 /** 
  * Order Schema
- * @param {string} OID - 
- * @param {string} CustomerName - 
- * @param {string} DeliveryAddress -
- * @param {string} ItemsName - 
- * @param {double} Price - 
- * @param {double} HST - 
- * @param {int} Quantity - 
+ * @param {string} AccountID - 
+ * @param {} Items - from Cart
+ * @param {string} CustomerName -
+ * @param {string} Address - 
  * @param {date} OrderDate - 
- * @param {int} Status - 
+ * @param {Number} Status - 1: READY FOR DELIVERY, 2: IN TRANSIT, 3: DELIVERED
+ * @param {Number} PayStatus -  1: Unpaid, 2: Paid
+ * @param {Number} ShippingCost - 
+ * @param {Number} HST - 
+ * @param {Number} TotalPrice - (Items.Price+Shipping Cost)*HST
  * @param {binData} ImageProof - 
  */
 
 const OrderSchema = new mongoose.Schema({
-    OID: {
-        type: String,
+    AccountID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Account', // Reference to Account collection
         required: true,
     },
+    Items: [{
+        MenuID: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Menu',
+            required: true,
+        },
+        Quantity: {
+            type: Number,
+            required: true,
+        },
+        Price: {
+            type: Number,
+            required: true,
+        },
+    }],
     CustomerName: {
         type: String,
         required: true,
     },
-    DeliveryAddress: {
+    Address: {
         type: String,
         required: true,
-    },
-    ItemsName: {
-        type: String,
-        required: true,
-    },
-    Price: {
-        type: Number,
-        required: true,
-        // Can add formula for Price * HST here
-    },
-    HST: {
-        type: Number,
-        required: true,
-    },
-    Quantity: {
-        type: Number,
-        required: true,
-        default: 1,
     },
     OrderDate: {
         type: Date,
@@ -54,6 +53,24 @@ const OrderSchema = new mongoose.Schema({
         required: true,
         enum: [1, 2, 3], // 1: READY FOR DELIVERY, 2: IN TRANSIT, 3: DELIVERED
         default: 1,
+    },
+    PayStatus: {
+        type: Number,
+        required: true,
+        enum: [1, 2], // 1: Unpaid, 2: Paid
+        default: 1,
+    },
+    ShippingCost: {
+        type: Number,
+        required: true,
+    },
+    HST: {
+        type: Number,
+        required: true,
+    },
+    TotalPrice: {
+        type: Number,
+        required: true,
     },
     ImageProof: {
         type: Buffer,

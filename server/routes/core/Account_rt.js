@@ -6,7 +6,7 @@ const Customer = require('../../model/core/Customer_md');
 const Driver = require('../../model/driver/Driver_md');
 const Restaurant = require('../../model/restaurant/Restaurant_md');
 const { ValidateInsertFormData, ValidateUpdateFormData } = require('../../controller/core/Account_con')
-const VerifyTokenFromCookie = require('../../utils/core/Token')
+const {VerifyTokenFromCookie} = require('../../utils/core/Token')
 const router = express.Router();
 
 
@@ -165,7 +165,9 @@ router.post('/login', async (req, res, next) => {
         // Generate JWT
         const token = jwt.sign({ ID: user._id, UserName: user.UserName, IsRestaurant: user.IsRestaurant, IsDriver: user.IsDriver, IsCustomer: user.IsCustomer }, process.env.LOGGING_JWT_SECRET, { expiresIn: '1h' });
         // res.status(200).send("success");
-        res.cookie('token', token, { httpOnly: true, secure: true });
+        // res.cookie('token', token, { httpOnly: true, secure: true });
+        res.cookie('token', token, { httpOnly: false, secure: false });  // Change to httpOnly: true, secure: true when not developing
+
         return res.render("restaurant/RestaurantHome.ejs")
     } catch (error) {
         res.status(500).send('Error logging in: ' + error.message);
@@ -176,6 +178,11 @@ router.post('/login', async (req, res, next) => {
 router.get('/logout', (req, res) => {
     // Invalidate JWT in client side (handled in view or frontend)
     res.clearCookie('token', { httpOnly: true, secure: true, sameSite: 'Strict' });
+    req.UserID = undefined;
+    req.UserName = undefined;
+    req.IsRestaurant = undefined;
+    req.IsDriver = undefined;
+    req.IsCustomer = undefined;
     res.status(200).send('Logged out successfully');
 });
 
