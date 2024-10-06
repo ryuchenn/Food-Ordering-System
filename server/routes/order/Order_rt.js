@@ -290,13 +290,33 @@ router.post('/checkout/confirm', VerifyTokenFromCookie, async (req, res) => {
         CartData.Items = RemainingItems;
         await CartData.save();
 
-        res.render('order/OrderReceipt');
+        // Pass order data to the receipt page
+        res.render('order/OrderReceipt', {
+            OrderID: NewOrder._id,
+            CustomerName: NewOrder.CustomerName,
+            Address: NewOrder.Address,
+            OrderDate: NewOrder.OrderDate.toISOString().split('T')[0], // Format date to YYYY-MM-DD
+            Items: ParsedFilteredItems, // Pass selected items for receipt
+            Subtotal: NewOrder.TotalPrice.toFixed(2),
+            HST: NewOrder.HST.toFixed(2),
+            ShippingCost: NewOrder.ShippingCost.toFixed(2),
+            TotalPrice: (NewOrder.TotalPrice + NewOrder.HST + NewOrder.ShippingCost).toFixed(2)
+        });
         // res.status(200).send('Order placed successfully');
     } catch (error) {
         console.error('Error confirming order:', error);
         res.status(500).send('Error confirming order');
     }
 });
+
+router.get('/Receipt', VerifyTokenFromCookie, async (req, res) => {
+    try {
+        res.render('order/OrderReceipt')
+    } catch (error) {
+        console.error('Error fetching receipt:', error);
+    }
+});
+
 
 router.get('/OrderStatusRestaurant', VerifyTokenFromCookie, async (req, res) => {
     try {

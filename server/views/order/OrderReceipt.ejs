@@ -3,16 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/style/App.css">
-    <link rel="stylesheet" href="/style/Order.css">
+    <title>Receipt</title>
+    <style>
+        #ReceiptBody {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .receipt-container {
+            width: 50%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .receipt-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .receipt-body {
+            margin-bottom: 30px;
+        }
+        .receipt-footer {
+            text-align: right;
+        }
+        .receipt-table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+        .receipt-table th, .receipt-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .receipt-table th {
+            background-color: #f4f4f4;
+        }
+        #HeaderLogo{
+            display: none;
+        }
+    </style>
 </head>
-<body>
+<body id="ReceiptBody">
     <%- include('../../component/order/Order_hd') %> <!-- Header -->
 
-    <h1>This is Order Receipt</h1>
+    <div class="receipt-container">
+        <div class="receipt-header">
+            <h1>Receipt</h1>
+            <p>Order ID: <%= OrderID %></p>
+        </div>
 
-    <div id="div-bottom"></div> <!-- Make page looks not too empty -->
-    <%- include('../../component/order/Order_ft') %> <!-- Footer -->
+        <div class="receipt-body">
+            <p><strong>Name:</strong> <%= CustomerName %></p>
+            <p><strong>Address:</strong> <%= Address %></p>
+            <p><strong>Date:</strong> <%= OrderDate %></p>
+
+            <h3>Order Summary:</h3>
+            <table class="receipt-table">
+                <thead>
+                    <tr>
+                        <th>Menu Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% Items.forEach(item => { %>
+                    <tr>
+                        <td><%= item.MenuID.MenuName %></td>
+                        <td>$<%= item.MenuID.Price %></td>
+                        <td><%= item.Quantity %></td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="receipt-footer">
+            <p><strong>Subtotal:</strong> $<%= Subtotal %></p>
+            <p><strong>HST:</strong> $<%= HST %></p>
+            <p><strong>Shipping Cost:</strong> $<%= ShippingCost %></p>
+            <p><strong>Total Sales:</strong> $<%= TotalPrice %></p>
+        </div>
+    </div>
 </body>
 </html>
