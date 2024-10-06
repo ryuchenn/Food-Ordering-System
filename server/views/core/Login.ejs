@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="/style/App.css">
+    <link rel="stylesheet" href="/style/Order.css">
     <style>
         .error {
             color: red;
@@ -11,6 +13,8 @@
     </style>
 </head>
 <body>
+    <%- include('../../component/order/Order_hd') %> <!-- Header -->
+
     <h1>GBC Eats</h1>
     <form action="/account/login" method="POST">
         <label for="UserName">Username</label>
@@ -31,5 +35,7 @@
             </p>
         <% } %>
     </form>
+    <div id="div-bottom"></div> <!-- Make page looks not too empty -->
+    <%- include('../../component/order/Order_ft') %> <!-- Footer -->
 </body>
 </html>

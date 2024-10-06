@@ -7,8 +7,10 @@ const jwt = require('jsonwebtoken');
 const VerifyTokenFromCookie = (req, res, next) => {
     const token = req.cookies.token;
     
-    if (!token)
+    if (!token){
+        res.locals.IsLoggedIn = false;
         return res.status(401).json({ message: 'Access denied. No token provided.' });
+    }
 
     try {
         const decoded = jwt.verify(token, process.env.LOGGING_JWT_SECRET);
@@ -17,8 +19,10 @@ const VerifyTokenFromCookie = (req, res, next) => {
         req.IsRestaurant = decoded.IsRestaurant;
         req.IsDriver = decoded.IsDriver;
         req.IsCustomer = decoded.IsCustomer;
+        res.locals.IsLoggedIn = true;
         next();
     } catch (error) {
+        res.locals.IsLoggedIn = false;
         return res.status(400).json({ message: 'Invalid token.' });
     }
 }
@@ -41,8 +45,13 @@ const SetUserInformation = (req, res, next) => {
             req.IsRestaurant = decoded.IsRestaurant;
             req.IsDriver = decoded.IsDriver;
             req.IsCustomer = decoded.IsCustomer;
+            res.locals.IsLoggedIn = true;
         }
+        else
+            res.locals.IsLoggedIn = false;
+
     } catch (error) {
+        res.locals.IsLoggedIn = false;
     }
     next();
 

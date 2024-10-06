@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Menu = require('../../model/restaurant/Menu_md');
 const Restaurant = require('../../model/restaurant/Restaurant_md');
-const Cart = require('../../model/order/Form_md');
+const Cart = require('../../model/order/Cart_md');
 const Account = require('../../model/core/Account_md');
 const {VerifyTokenFromCookie, SetUserInformation} = require('../../utils/core/Token')
 
@@ -14,7 +14,7 @@ const upload = multer({ storage: storage });
 //////////// API Routes && Input Validation && Error Handling ////////////
 
 // Home Page
-router.get("/home", (req, res) => {
+router.get("/home", SetUserInformation, (req, res) => {
     return res.render("restaurant/RestaurantHome.ejs")
 });
 
@@ -40,7 +40,6 @@ router.get("/menu", SetUserInformation, async (req, res, next) => {
         res.status(500).send('Error fetching menu');
     }
 });
-
 
 // router.post('/cart/add', VerifyTokenFromCookie, async (req, res, next) => {
 //     try {
@@ -84,12 +83,12 @@ router.get("/menu", SetUserInformation, async (req, res, next) => {
 // });
 
 // Book Page
-router.get("/book", (req, res) => {
+router.get("/book", SetUserInformation, (req, res) => {
     return res.render("restaurant/RestaurantBook.ejs")
 });
 
 // About Page
-router.get("/about", (req, res) => {
+router.get("/about", SetUserInformation, (req, res) => {
     return res.render("restaurant/RestaurantAbout.ejs")
 });
 

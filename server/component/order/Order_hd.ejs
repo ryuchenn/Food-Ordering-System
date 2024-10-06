@@ -128,12 +128,15 @@
             <!-- <a href="/restaurant/cart"><img class="shoppingCart" src="/restaurant/shoppingCart.png" alt="Logo"></a> -->
     
             <div class="sider" id="sider">
-                <a class="BGClolor" href="/restaurant/home">Home</a>
-                <a class="BGClolor" href="/restaurant/menu">Menu</a>
-                <a class="BGClolor" href="/restaurant/book">Book</a>
-                <a class="BGClolor" href="/restaurant/about">About</a>
-                <a class="BGClolor" href="/restaurant/AddMenu">Add Menu</a>
-                <a class="BGClolor" href="/order/OrderHome">Order</a>
+                <a class="BGClolor" href="/order/OrderHome">Home</a>
+                <a class="BGClolor" href="/order/OrderTest">Order Testing Sample</a>
+                <a class="BGClolor" href="/order/OrderCart">OrderCart</a>
+
+                <a class="BGClolor" href="/order/OrderStatusRestaurant">Status by Restaurant</a>
+                <a class="BGClolor" href="/order/OrderStatusCustomer">Status by Customer</a>
+
+                <a class="BGClolor" href="/driver/DriverOrder">Driver Order</a>
+                <a class="BGClolor" href="/driver/DriverUpdate">Driver Order Update</a>
     
                 <button class="close-btn" onclick="hideSider()">
                     <img src="/restaurant/rightArrow2.png" alt="Menu Icon">
@@ -143,7 +146,6 @@
                     <a href="#"><img id="side-img1" src="/restaurant/facebook1.png" alt="Facebook"></a>
                     <a href="#"><img id="side-img2" src="/restaurant/instagram1.png" alt="Instagram"></a>
                 </div>
-                
                 <a href="<%= IsLoggedIn ? '/account/logout' : '/account/login' %>" class="login-btn BGClolor">
                     <%= IsLoggedIn ? 'Logout' : 'Login' %>
                 </a>
