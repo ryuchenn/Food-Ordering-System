@@ -35,6 +35,7 @@ This project is a simple Task Manager API built using Node.js, Express, and Mong
      DB_RESTAURANT_PREFIX=/restaurant
      DB_ORDER_PREFIX=/order
      DB_DRIVER_PREFIX=/driver
+     GOOGLE_MAP_KEY=GoogleMapAPIKEY
      ```
 
 3. Make sure MongoDB is running (either locally or via MongoDB Atlas).

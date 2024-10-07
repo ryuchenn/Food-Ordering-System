@@ -6,57 +6,54 @@
     <title>Document</title>
     <link rel="stylesheet" href="/style/App.css">
     <link rel="stylesheet" href="/style/Restaurant.css">
+    
 </head>
 <body>
     <%- include('../../component/restaurant/Restaurant_hd') %> <!-- Header -->
-    <h1>Add New Menu Item</h1>
+    <h1 style="text-align: center; padding-top: 15%; font-size: 36px;">Add New Menu Item</h1>
+
+    <div id="restaurant-layout">
+
+        <form action="/restaurant/AddMenu" method="POST" enctype="multipart/form-data">
+            <!-- <label for="restaurant_name">Restaurant Name</label>
+            <input type="text" id="restaurant_name" name="restaurant_name" required>
+            <br> -->
     
-    <form action="/restaurant/AddMenu" method="POST" enctype="multipart/form-data">
-        <!-- <label for="restaurant_name">Restaurant Name</label>
-        <input type="text" id="restaurant_name" name="restaurant_name" required>
-        <br> -->
-
-        <label for="MenuName">Food Name</label>
-        <input type="text" id="MenuName" name="MenuName" required>
-        <br>
-
-        <label for="Category">Category</label>
-        <select id="Category" name="Category" required>
-            <option value="1">Main Course</option>
-            <option value="2">Side</option>
-            <option value="3">Drink</option>
-            <option value="4">Other</option>
-        </select>
-        <br>
-
-        <label for="Quantity">Quantity</label>
-        <input type="number" id="Quantity" name="Quantity" required>
-        <br>
-
-        <label for="Price">Price</label>
-        <input type="number" id="Price" name="Price" step="0.01" required>
-        <br>
-        
-        <label for="Image">Upload Image</label>
-        <input type="file" id="Image" name="Image" accept="Image/*" required>
-        <br>
-
-        <label for="Description">Description</label>
-        <textarea id="Description" name="Description"></textarea>
-        <br>
-
-        <button type="submit">Add Menu Item</button>
-    </form>
-    <% if (typeof ErrorMessage !== 'undefined') { %>
-        <p class="error" style="color: red;">
-            <%= ErrorMessage %>
-        </p>
-    <% } else if (typeof SuccessMessage !== 'undefined') { %>
-        <p class="success" style="color: blue;">
-            <%= SuccessMessage %>
-        </p>
-    <% } %>
-    <div id="div-bottom"></div> <!-- Make page looks not too empty -->
+            <label for="MenuName">Food Name</label>
+            <input type="text" id="MenuName" name="MenuName" required>
+            <label for="Category">Category</label>
+            <select id="Category" name="Category" required>
+                <option value="1">Main Course</option>
+                <option value="2">Side</option>
+                <option value="3">Drink</option>
+                <option value="4">Other</option>
+            </select>
+    
+            <label for="Quantity">Quantity</label>
+            <input type="number" id="Quantity" name="Quantity" required>
+    
+            <label for="Price">Price</label>
+            <input type="number" id="Price" name="Price" step="0.01" required>
+            
+            <label for="Image">Upload Image</label>
+            <input type="file" id="Image" name="Image" accept="Image/*" required>
+    
+            <label for="Description">Description</label>
+            <textarea id="Description" name="Description"></textarea>
+    
+            <button class="custom_button" type="submit">Add Menu Item</button>
+        </form>
+        <% if (typeof ErrorMessage !== 'undefined') { %>
+            <p class="error" style="color: red;">
+                <%= ErrorMessage %>
+            </p>
+        <% } else if (typeof SuccessMessage !== 'undefined') { %>
+            <p class="success" style="color: blue;">
+                <%= SuccessMessage %>
+            </p>
+        <% } %>
+    </div>
+    <div id="div-bottom3"></div> <!-- Make page looks not too empty -->
     <%- include('../../component/restaurant/Restaurant_ft') %> <!-- Footer -->
 </body>
 </html>

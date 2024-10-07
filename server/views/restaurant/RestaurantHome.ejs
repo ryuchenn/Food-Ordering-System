@@ -3,52 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://maps.googleapis.com/maps/api/js?key=<%= GoogleMapAPI %>&callback=console.debug&libraries=maps,marker&v=beta"></script>
     <title>Document</title>
     <link rel="stylesheet" href="/style/App.css">
     <link rel="stylesheet" href="/style/Restaurant.css">
+    <!-- About & Contact -->
     <style>
-        .image-container {
-            position: relative;
-            width: 100vw;
-            height: 30vw;
-            overflow: hidden;
-            box-sizing: border-box;
+        .context-introduction {
+            display: flex;
+            justify-content: space-between;
+            height: 30vh; 
+            text-align: center;
+            font-size: 25px;
+            padding-top: 10%;
+            background-color: #ffffff; 
         }
 
-        #Test {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: opacity(30%);
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            height: 30vh; 
+            background-color: #3c3b51; 
         }
 
-        .image-text {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .location {
+            width: 45%;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+
+        .location img{
+            max-width: 100%; 
+            height: auto; 
+            display: block;
+            margin: 0 auto; 
+        }
+        .location iframe {
+            max-width: 100%;
+            height: 300px;
+            border: 0;
+        }
+
+        
+
+        /* Left side About - information */
+        .contact-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
             color: white;
-            font-size: 1.5rem;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px 20px;
-            border-radius: 5px;
+            background-color: #4a4a63; 
+        }
+
+        .contact-info h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            font-size: 1.5em;
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        /* Right side About - image */
+        .contact-image {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+
+    <!-- Background Image Setting -->
+    <style>
+        .BGND-Image::before{
+            /* include + header */
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            /* background pictures setting */
+            background-image: url('/restaurant/food/header-background.jpg');
+            background-position: 60% 0%; /* background-position: LeftOrRight UpOrDown; */
+            background-size: 150% auto; /* cover=cover whole layout, contain=all picture */
+
+            opacity: 0.25;
+            z-index: -1; 
+        }
+        .Title-text {
+            text-align: center;
+            padding: 125px;
+            font-family: "Dancing Script", cursive;
+            z-index: 1; 
         }
     </style>
 </head>
 <body>
-    <div class="image-container">
-        <%- include('../../component/restaurant/Restaurant_hd') %> <!-- Header -->
-        <img id="Test" src="/restaurant/Test.jpg" alt="Menu Icon">
-        <!-- Bottom text -->
-        <div class="image-text">123</div>
+    <%- include('../../component/restaurant/Restaurant_hd') %> <!-- Header -->
+
+    <!-- Background Image && Title Text -->
+    <div class="BGND-Image" >
+        <div class="Title-text">
+            <span style="font-size: 45px; font-weight: bold; font-family: 'Noto Serif JP', serif;"> 高品質な日本料理 </span>
+            <h1 style="font-size: 100px;">OMG Japanese Restaurant</h1>
+
+            <span class="button_container">
+                <a href="/restaurant/home#Book" style="text-decoration: none;"><span class="button_label">Find a Table</span></a>
+            </span>
+            <span class="button_container">
+                <a href="/order/OrderHome" style="text-decoration: none;"><span class="button_label">Order Online</span></a>
+            </span>
+        </div>
+    </div>
+    
+    <!-- About 1 -->
+    <div class="contact-container" id="About">
+        <div class="contact-info" style="background-color: white; color: black;">
+            <p>Welcome to OMG Japanese Restaurant, where we bring the rich traditions of Japanese cuisine to your table.
+                Located in the heart of the city, OMG offers an exciting fusion of flavors, with a menu that celebrates the
+                best of Sushi, Ramen, and traditional Japanese beverages.
+            </p>
+        </div>
     </div>
 
-    <main style="padding: 20px;">
-        <h1 style="text-align: center;">OMG Japanese Restaurant</h1>
-        <p style="text-align: center;">Enjoy the finest Japanese cuisine in Canada!</p>
-    </main>
+    <!-- About 2 -->
+    <div class="contact-container">
+        <!-- Left -->
+        <div class="contact-image" style="background-image: url('/restaurant/food/sushi1.jpg');"></div>
 
-    <div id="div-bottom"></div> <!-- Make page looks not too empty -->
+        <!-- Right -->
+        <div class="contact-info">
+            <p>At OMG Japanese Restaurant, we are committed to delivering a relaxed yet refined dining experience,
+                showcasing authentic Japanese culinary techniques. Our menu includes expertly crafted sushi, savory ramen
+                bowls, and a selection of refreshing sakes and handcrafted cocktails. Whether you're craving classic
+                favorites or something new, our dishes are designed to delight your palate.
+            </p>
+        </div>
+    </div>
+
+    <!-- About 3 -->
+    <div class="contact-container">
+        <!-- Left -->
+        <div class="contact-info">
+            <p>Immerse yourself in our dynamic atmosphere as you enjoy shareable plates, hearty main dishes, and uniquely
+                crafted drinks. Savor signature creations like our OMG Sushi Platter, Tonkotsu Ramen, and Japanese-inspired
+                cocktails, all made with the finest ingredients.
+            </p>
+        </div>
+
+        <!-- Right -->
+        <div class="contact-image" style="background-image: url('/restaurant/food/ramen2.jpg');"></div>
+    </div>
+
+    <!-- About 4 -->
+    <div class="contact-container">
+        <!-- Left -->
+        <div class="contact-image" style="background-position: 50% 100%; background-image: url('/restaurant/food/sake.jpg');"></div>
+
+        <!-- Right -->
+        <div class="contact-info">
+            <p>Pair your meal with our extensive selection of premium sakes, cocktails, and non-alcoholic beverages,
+                thoughtfully curated to enhance the flavors of our dishes. Whether you're in the mood for a light drink or
+                something bold, we have something for everyone.
+            </p>
+            <span class="button_container">
+                <a href="/restaurant/menu" style="text-decoration: none;"><span class="button_label">Menu</span></a>
+            </span>
+        </div>
+        
+    </div>
+
+    <!-- Locations -->
+    <h1 style="text-align: center; font-size: 36px; padding-top: 7%;" id="Locations">Locations</h1>
+    <div class="container" style="margin-bottom: 7%;">
+        <div class="location">
+            <p>OMG Japanese Downtown</p>
+            <p>Tel: 437-765-4321</p>
+            <p>160 Kendal Ave, Toronto, ON M5R 1M3</p>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.374487743155!2d-79.41085052490234!3d43.67624282836914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34ba91c6bdfb%3A0x2e9e4734f77c0f6!2s160%20Kendal%20Ave%2C%20Toronto%2C%20ON%20M5R%201M3%2C%20Canada!5e0!3m2!1sen!2sus!4v1672533062114!5m2!1sen!2sus"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+        <div class="location">
+            <p>OMG Japanese Habourfront</p>
+            <p>Tel: 437-123-4567</p>
+            <p>51 Dockside Dr, Toronto, ON M5A 1B6</p>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.473582435737!2d-79.36556243896484!3d43.6440544128418!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34e8d21bf8db%3A0xf8f01efec4226f6d!2s51%20Dockside%20Dr%2C%20Toronto%2C%20ON%20M5A%201B6%2C%20Canada!5e0!3m2!1sen!2sus!4v1672533062114!5m2!1sen!2sus"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </div>
+
+
+    <!-- Reservation -->
+    <div id="restaurant-layout" style="background-color: azure;">
+        <div style="text-align: center;">
+            <h1 style="font-size: 36px; padding-top: 5%;" id="Book">Reservation</h1>    
+            <p style="font-size: 20px;">If you have 8 people or less, please see below for reservation on opentable.</p>
+        </div> 
+        <div> 
+            <form>
+                <!-- Restaurant Select -->
+                <!-- <label for="restaurant">Select a restaurant</label> -->
+                <select style="margin-bottom: 20px;" id="restaurant" name="restaurant">
+                    <option value="-1">Select a restaurant</option>
+                    <option value="1">OMG Habourfront</option>
+                    <option value="2">OMG Downtown</option>
+                </select>   
+                
+                <input type="date" id="date" name="date" value="2024-10-06">    
+                <select id="time" name="time">
+                    <option value="18:00">6:00 PM</option>
+                    <option value="18:30">6:30 PM</option>
+                    <option value="19:00">7:00 PM</option>
+                    <option value="19:30">7:30 PM</option>
+                    <option value="20:00">8:00 PM</option>
+                    <option value="20:30">8:30 PM</option>
+                </select>
+    
+                <select id="party-size" name="party-size">
+                    <option value="1">1 person</option>
+                    <option value="2">2 people</option>
+                    <option value="3">3 people</option>
+                    <option value="4">4 people</option>
+                    <option value="5">5 people</option>
+                    <option value="6">6 people</option>
+                    <option value="7">7 people</option>
+                    <option value="8">8 people</option>
+                </select>
+    
+                <span class="button_container">
+                    <!-- <input type="submit" value="Find a Table"> -->
+                    <a href="#" style="text-decoration: none;"><span class="button_label">Find a Table</span></a>
+                </span>
+            </form>
+        </div>
+    </div>
+
     <%- include('../../component/restaurant/Restaurant_ft') %> <!-- Footer -->
 </body>
 </html>

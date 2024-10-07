@@ -15,7 +15,9 @@ const upload = multer({ storage: storage });
 
 // Home Page
 router.get("/home", SetUserInformation, (req, res) => {
-    return res.render("restaurant/RestaurantHome.ejs")
+    return res.render("restaurant/RestaurantHome.ejs", {
+        GoogleMapAPI: process.env.GOOGLE_MAP_KEY
+    })
 });
 
 // Menu
@@ -83,14 +85,16 @@ router.get("/menu", SetUserInformation, async (req, res, next) => {
 // });
 
 // Book Page
-router.get("/book", SetUserInformation, (req, res) => {
-    return res.render("restaurant/RestaurantBook.ejs")
-});
+// router.get("/book", SetUserInformation, (req, res) => {
+//     return res.render("restaurant/RestaurantBook.ejs")
+// });
 
 // About Page
-router.get("/about", SetUserInformation, (req, res) => {
-    return res.render("restaurant/RestaurantAbout.ejs")
-});
+// router.get("/about", SetUserInformation, (req, res) => {
+//     return res.render("restaurant/RestaurantAbout.ejs", {
+//         GoogleMapAPI: process.env.GOOGLE_MAP_KEY
+//     })
+// });
 
 // AddMenu Page
 router.get("/AddMenu", VerifyTokenFromCookie, (req, res) => {
