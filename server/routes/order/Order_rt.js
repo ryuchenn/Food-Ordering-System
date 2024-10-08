@@ -1,20 +1,14 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const OrderSchema = require('../../model/order/Order_md');
+const OrderSchema = require("../../model/order/Order_md");
 
-//////////// API Routes && Input Validation && Error Handling ////////////
-
-
-// SAMPLE
-// router.get('/XXXX', async (req, res) => {
-//     try {
-//         const tasks = await OrderSchema.find();
-//         res.json(tasks);
-//     } catch (err) {
-//         res.status(500).json({ error: 'Server error' });
-//     }
-// });
-
-
+router.route("/").get(async (req, res) => {
+  try {
+    const orders = await OrderSchema.find().populate("driver");
+    res.render("orders", { orders });
+  } catch (err) {
+    res.status(500).send("Error fetching orders");
+  }
+});
 
 module.exports = router;
