@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="/style/App.css">
+    <link rel="stylesheet" href="/style/Order.css">
     <style>
         .error {
             color: red;
@@ -11,23 +13,32 @@
     </style>
 </head>
 <body>
-    <h1>Login</h1>
-    <form action="/account/login" method="POST">
-        <label for="UserName">Username</label>
-        <input type="text" name="UserName" required>
-        <br>
+    <%- include('../../component/order/Order_hd') %> <!-- Header -->
 
-        <label for="Password">Password</label>
-        <input type="password" name="Password" required>
-        <br>
-
-        <button type="submit">Login</button>
-
-        <% if(typeof errorMessage !=='undefined' ) { %>
-            <p class="error">
-                <%= errorMessage %>
-            </p>
-        <% } %>
-    </form>
+    <h1 style="text-align: center; padding-top: 15%; font-size: 36px;">GBC Eats</h1>
+    <div id="order-layout1">
+        <form action="/account/login" method="POST">
+            <label for="UserName">Username</label>
+            <input type="text" name="UserName" required>
+            <br>
+    
+            <label for="Password">Password</label>
+            <input type="password" name="Password" required>
+            <br>
+    
+            <button class="custom_button" type="submit">Login</button>
+    
+            <a href="/account/register">Register</a>
+            
+            <% if(typeof errorMessage !=='undefined' ) { %>
+                <p class="error">
+                    <%= errorMessage %>
+                </p>
+            <% } %>
+        </form>
+    </div>
+    
+    <div id="div-bottom3"></div> <!-- Make page looks not too empty -->
+    <%- include('../../component/order/Order_ft') %> <!-- Footer -->
 </body>
 </html>

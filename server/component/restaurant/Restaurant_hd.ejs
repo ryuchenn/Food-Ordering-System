@@ -1,0 +1,172 @@
+<style>
+    .sider {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        /* Initially hidden */
+        width: 300px;
+        height: 100%;
+        background-color: #333;
+        color: white;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+        transition: right 0.3s ease;
+        z-index: 1000;
+        padding-top: 20px;
+    }
+
+    .sider a {
+        display: block;
+        padding: 10px;
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        margin-bottom: 10px;
+    }
+
+    .sider .BGClolor:hover {
+        background-color: #555;
+    }
+
+    /* Close button inside the sider */
+    .close-btn {
+        width: 100%;
+        background-color: #333;
+        color: white;
+        text-align: left;
+        padding: 10px;
+        cursor: pointer;
+        border: none;
+        position: relative;
+        margin-top: 250px;
+    }
+
+    .close-btn img {
+        width: 10%;
+    }
+
+    .sider .login-btn {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        background-color: #ff4400e0;
+        color: #333;
+        text-decoration: none;
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+    }
+
+    .shoppingCart {
+        position: fixed;
+        top: 20px;
+        right: 88px;
+        cursor: pointer;
+
+        width: 50px;
+        height: 50px;
+    }
+
+    .menu-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: transparent;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .menu-btn img {
+        width: 40px;
+        height: 40px;
+    }
+
+    #side-img1 {
+        position: absolute;
+        bottom: 20px;
+        left: 50px;
+        width: 100%;
+        padding: 10px;
+        text-decoration: none;
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+        height: 50px;
+        width: 50px;
+    }
+
+    #side-img1:hover {
+        background-color: transparent;
+    }
+
+    #side-img2 {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        padding: 10px;
+        text-decoration: none;
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+        height: 50px;
+        width: 50px;
+    }
+
+    #side-img2:hover {
+        background-color: transparent;
+    }
+
+</style>
+
+<body id="top-body">
+    <header>
+        <div>
+            <a href="/restaurant/home"><img src="/restaurant/Logo.png" alt="Logo" style="padding-left: 30px; padding-top: 10px; width: auto; height: 125px;"></a>
+            
+    
+            <!-- <a href="/restaurant/cart"><img class="shoppingCart" src="/restaurant/shoppingCart.png" alt="Logo"></a> -->
+    
+            <div class="sider" id="sider">
+                <a class="BGClolor" href="/restaurant/home">Home</a>
+                <a class="BGClolor" href="/restaurant/menu">Menu</a>
+                <a href="/restaurant/home#Book">Book</a>
+                <a href="/restaurant/home#Locations">Locations</a>
+                <a href="/restaurant/home#About">About</a>
+                <a class="BGClolor" href="/restaurant/AddMenu">Add Menu</a>
+                <a class="BGClolor" href="/order/OrderHome">Order</a>
+                
+
+    
+                <button class="close-btn" onclick="hideSider()">
+                    <img src="/restaurant/rightArrow2.png" alt="Menu Icon">
+                </button>
+    
+                <div>
+                    <a href="#"><img id="side-img1" src="/restaurant/facebook1.png" alt="Facebook"></a>
+                    <a href="#"><img id="side-img2" src="/restaurant/instagram1.png" alt="Instagram"></a>
+                </div>
+                
+                <a href="<%= IsLoggedIn ? '/account/logout' : '/account/login' %>" class="login-btn BGClolor">
+                    <%= IsLoggedIn ? 'Logout' : 'Login' %>
+                </a>
+            </div>
+    
+            <button class="menu-btn" onclick="showSider()">
+                <img src="/restaurant/menu.png" alt="Menu Icon">
+            </button>
+        </div>
+    </header>
+</body>
+
+
+<script>
+    function showSider() {
+        document.getElementById('sider').style.right = '0'; // Show sider
+    }
+
+    function hideSider() {
+        document.getElementById('sider').style.right = '-300px'; // Hide sider
+    }
+</script>

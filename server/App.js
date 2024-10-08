@@ -16,10 +16,14 @@ const app = express()
 mongoose.connect("mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@" + process.env.DB_NAME + ".5nu9r.mongodb.net/" + process.env.DB_USE)
         .then(()=> console.log("Connect MongoDB Success!"))
         .catch(err => console.err("Connect MongoDB Error: "+ err))
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '15mb' }));  
+app.use(express.urlencoded({ limit: '15mb', extended: true })); // allowed 50MB for url data
 app.use(cookieParser());
-
+app.use(express.static(path.join(__dirname, 'public'))); // Testing images file
+app.use((req, res, next) => {
+    res.locals.IsLoggedIn = !!req.cookies.token;
+    next();
+});
 
 //////////// MongoDB and Mongoose ////////////
 // Loading & Initialize Model
@@ -27,6 +31,7 @@ app.use(cookieParser());
 const { RestaurantSchema } = require('./model/restaurant/Restaurant_md');
 const { MenuSchema } = require('./model/restaurant/Menu_md');
 const { OrderSchema } = require('./model/order/Order_md');
+const { CartSchema } = require('./model/order/Cart_md');
 const { DriverSchema } = require('./model/driver/Driver_md');
 const { AccountSchema } = require('./model/core/Account_md');
 const { CustomerSchema } = require('./model/core/Customer_md');

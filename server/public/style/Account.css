@@ -1,0 +1,122 @@
+
+#div-top, #div-bottom{
+    width: 100%;
+    height: 100%;
+}
+
+#div-bottom2{
+    width: 100%;
+    height: 50%;
+}
+
+#div-bottom3{
+    width: 100%;
+    height: 35%;
+}
+
+#div-bottom4{
+    width: 100%;
+    height: 15%;
+}
+
+.div-padding1{
+    padding: 150px;
+}
+
+/* ALL Restaurant Layout */
+#account-layout1 form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#account-layout1 select, #account-layout1 input,
+#account-layout1 textarea  
+{
+    width: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+#account-layout1 form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Register Page Layout */
+#RestaurantFields form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#RestaurantFields select, #RestaurantFields input,
+#RestaurantFields textarea  
+{
+    width: 450px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+#DriverFields form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#DriverFields select, #DriverFields input,
+#DriverFields textarea  
+{
+    width: 450px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+#CustomerFields form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#CustomerFields select, #CustomerFields input,
+#CustomerFields textarea  
+{
+    width: 450px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.radio-group
+{
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+}
+
+.radio-group select, .radio-group input,
+.radio-group textarea 
+{
+    width: 100px;
+    margin-right: 10px;
+}

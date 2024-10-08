@@ -1,0 +1,50 @@
+/* Global CSS */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap'); /* font-family: "Noto Serif JP", serif; */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Noto+Serif+JP:wght@200..900&display=swap'); /* "Dancing Script", cursive */
+html, body{
+    height: 100%;
+    width: 100%;
+    margin: auto;
+}
+
+/* All Button Element */
+.custom_button {
+    background-color: #2e99e5; 
+    color: #ffffff; 
+    border: none; 
+    padding: 15px 30px; 
+    margin: 20px; 
+    font-size: 18px; 
+    font-family: 'Roboto', sans-serif; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+.custom_button:hover {
+    background-color: #f3c2c2; 
+}
+
+/* ALL span button */
+.button_container {
+    display: inline-block; 
+    /* background-color: #0050b3;  */
+    background-color: #2e99e5; 
+
+    color: #ffffff; 
+    padding: 15px 25px; /* left,right || top,bottom */
+    margin: 20px; 
+    border-radius: 5px; 
+    text-align: center; 
+    
+    font-family: 'Roboto', sans-serif; 
+    font-size: 18px;
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+  }
+.button_container:hover {
+  background-color: #f3c2c2; 
+}
+.button_label {
+    color: #ffffff; 
+    font-weight: bold; 
+}

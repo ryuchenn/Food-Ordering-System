@@ -23,6 +23,10 @@ const MenuSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    Category: {
+        type: Number,
+        required: true,
+    },
     Quantity: {
         type: Number,
         required: true,

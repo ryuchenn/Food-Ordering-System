@@ -16,9 +16,9 @@ This project is a simple Task Manager API built using Node.js, Express, and Mong
 
 ## Quick Start
 
-1. Install the libraries (`dotenv, express, mongoose, nodemon, jest, supertest, bcrypt, jsonwebtoken, ejs, cookie-parser`):
+1. Install the libraries (`dotenv, express, mongoose, nodemon, jest, supertest, bcrypt, jsonwebtoken, ejs, cookie-parser, multer`):
     ```bash
-    npm install dotenv express mongoose nodemon jest supertest bcrypt jsonwebtoken ejs cookie-parser
+    npm install dotenv express mongoose nodemon jest supertest bcrypt jsonwebtoken ejs cookie-parser multer
     ```
 
 2. Set up environment variables:
@@ -35,6 +35,7 @@ This project is a simple Task Manager API built using Node.js, Express, and Mong
      DB_RESTAURANT_PREFIX=/restaurant
      DB_ORDER_PREFIX=/order
      DB_DRIVER_PREFIX=/driver
+     GOOGLE_MAP_KEY=GoogleMapAPIKEY
      ```
 
 3. Make sure MongoDB is running (either locally or via MongoDB Atlas).
@@ -77,6 +78,11 @@ YYYYYYYY
 └── OrderFlowManager/ #(Develop Order: Model -> Controller -> Routes -> app)
     ├── API_Docs     
     ├── config          # Config Setting
+    ├── component       # UI element
+    │   ├── core
+    │   ├── driver
+    │   ├── order
+    │   └── restaurant
     ├── controller      # Responsible for handling user input and application logic.
     │   ├── core
     │   ├── driver
@@ -91,7 +97,10 @@ YYYYYYYY
     │   ├── core
     │   ├── driver
     │   ├── order
-    │   └── restaurant
+    │   ├── restaurant
+    │   └── style
+    │       ├──  ......css
+    │       └──  App.css    # Global CSS
     ├── routes   
     │   ├── core
     │   ├── driver

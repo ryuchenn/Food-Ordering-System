@@ -6,18 +6,18 @@ const Customer = require('../../model/core/Customer_md');
 const Driver = require('../../model/driver/Driver_md');
 const Restaurant = require('../../model/restaurant/Restaurant_md');
 const { ValidateInsertFormData, ValidateUpdateFormData } = require('../../controller/core/Account_con')
-const VerifyTokenFromCookie = require('../../utils/core/Token')
+const {VerifyTokenFromCookie, SetUserInformation} = require('../../utils/core/Token')
 const router = express.Router();
 
 
 //////////// API Routes && Input Validation && Error Handling ////////////
 
 // Register Page
-router.get("/register", (req, res) => {
+router.get("/register", SetUserInformation, (req, res) => {
     return res.render("core/Register.ejs")
 });
 
-router.post('/register', async (req, res, next) => {
+router.post('/register', SetUserInformation, async (req, res, next) => {
     try {
         const { UserName, Password, ConfirmPassword, Email, Phone, Address, Role } = req.body; 
         const { RestaurantName, OpenHours, Cuisine } = req.body; // Restaurant
@@ -144,11 +144,11 @@ router.post('/register', async (req, res, next) => {
 });
 
 // Login
-router.get("/login", (req, res) => {
+router.get("/login", SetUserInformation, (req, res) => {
     return res.render("core/Login.ejs")
 });
 
-router.post('/login', async (req, res, next) => {
+router.post('/login', SetUserInformation, async (req, res, next) => {
     try {
         const { UserName, Password } = req.body;
 
@@ -165,17 +165,24 @@ router.post('/login', async (req, res, next) => {
         // Generate JWT
         const token = jwt.sign({ ID: user._id, UserName: user.UserName, IsRestaurant: user.IsRestaurant, IsDriver: user.IsDriver, IsCustomer: user.IsCustomer }, process.env.LOGGING_JWT_SECRET, { expiresIn: '1h' });
         // res.status(200).send("success");
-        res.cookie('token', token, { httpOnly: true, secure: true });
-        return res.render("restaurant/RestaurantHome.ejs")
+        // res.cookie('token', token, { httpOnly: true, secure: true });
+        res.cookie('token', token, { httpOnly: false, secure: false });  // Change to httpOnly: true, secure: true when not developing
+
+        return res.render("order/OrderHome.ejs")
     } catch (error) {
         res.status(500).send('Error logging in: ' + error.message);
     }
 });
 
 // Logout
-router.get('/logout', (req, res) => {
+router.get('/logout', SetUserInformation, (req, res) => {
     // Invalidate JWT in client side (handled in view or frontend)
     res.clearCookie('token', { httpOnly: true, secure: true, sameSite: 'Strict' });
+    req.UserID = undefined;
+    req.UserName = undefined;
+    req.IsRestaurant = undefined;
+    req.IsDriver = undefined;
+    req.IsCustomer = undefined;
     res.status(200).send('Logged out successfully');
 });
 

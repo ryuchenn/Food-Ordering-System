@@ -1,0 +1,46 @@
+
+#div-top, #div-bottom{
+    width: 100%;
+    height: 100%;
+}
+
+#div-bottom2{
+    width: 100%;
+    height: 50%;
+}
+
+#div-bottom3{
+    width: 100%;
+    height: 35%;
+}
+
+#div-bottom4{
+    width: 100%;
+    height: 15%;
+}
+
+.div-padding1{
+    padding: 150px;
+}
+
+/* ALL Restaurant Layout */
+#restaurant-layout form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#restaurant-layout select, #restaurant-layout input,
+#restaurant-layout textarea 
+{
+    width: 700px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+

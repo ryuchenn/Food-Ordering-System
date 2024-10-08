@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style/App.css">
+    <link rel="stylesheet" href="/style/Order.css">
+    <style>
+        .cart-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cart-items {
+            width: 70%;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .cart-item img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-item-controls select {
+            margin-left: 10px;
+        }
+
+        .cart-item-controls button {
+            margin-left: 20px;
+            color: red;
+        }
+        .order-summary {
+            width: 25%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            max-height: 200px;
+        }
+
+        .order-summary div {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .order-summary button {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <%- include('../../component/order/Order_hd') %> <!-- Header -->
+    <h1 style="text-align: center; font-size: 36px; ">Cart</h1>
+    
+    <div class="cart-container">
+        <!-- Top Side -->
+        <div class="cart-items">
+            <% CartItems.forEach(item => { %>
+                <div class="cart-item">
+                    <!-- Checkbox -->
+                    <input type="checkbox" name="selectedItems" value="<%= item._id %>" class="select-item" 
+                           data-price="<%= item.MenuID.Price %>" onchange="UpdateOrderSummary()">
+                    <img src="data:image/png;base64,<%= item.MenuID.Image.toString('base64') %>" alt="<%= item.MenuID.MenuName %>">
+        
+                    <div class="cart-item-details">
+                        <h3><%= item.MenuID.Name %></h3>
+                        <h3><%= item.MenuID.MenuName %></h3>
+                        <h3>$<%= item.MenuID.Price.toFixed(2) %></h3>
+                        <div class="cart-item-controls">
+                            <label>Quantity:</label>
+                            <select name="quantity" data-item-id="<%= item._id %>" onchange="UpdateQuantity('<%= item._id %>', this.value)">
+                                <% for(let i = 1; i <= 10; i++) { %>
+                                    <option value="<%= i %>" <%= item.Quantity === i ? 'selected' : '' %>><%= i %></option>
+                                <% } %>
+                            </select>
+                            <button onclick="RemoveItem('<%= item._id %>')">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+            <div>Subtotal: $<span id="subtotal">0.00</span></div>
+            <div>Shipping: $<span id="shipping">5.00</span></div>
+            <div>HST (13%): $<span id="hst">0.00</span></div>
+            <div>Total: $<span id="total">0.00</span></div>
+            <button onclick="Checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <div id="div-bottom3"></div> <!-- Make page looks not too empty -->
+    <%- include('../../component/order/Order_ft') %> <!-- Footer -->
+
+    <script>
+        let selectedItems = [];
+        function GetCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function RemoveItem(ItemID) {
+            // console.log(itemId)
+            fetch('/order/cart/remove_item', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ ItemID: ItemID })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    location.reload();
+                }
+            });
+        }
+
+        function UpdateOrderSummary() {
+            let subtotal = 0;
+            const items = document.querySelectorAll('.select-item:checked'); //Get the all items have checked
+
+            items.forEach(item => {
+                const itemId = item.value; // Get the ItemID
+                
+                const quantityElement = document.querySelector(`select[name="quantity"][data-item-id="${itemId}"]`);
+
+                const quantity = parseInt(quantityElement.value); // Get the Quantity
+            
+                const price = parseFloat(item.dataset.price); // Get Item price
+        
+                subtotal += price * quantity;
+            });
+        
+            const hst = subtotal * 0.13; // HST
+            const total = subtotal + 3.00 + hst; // Shipping Cost
+        
+            // Update subtotal, hst, total
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+            document.getElementById('hst').textContent = hst.toFixed(2);
+            document.getElementById('total').textContent = total.toFixed(2);
+        }
+
+        function UpdateQuantity(ItemID, Quantity) {
+            fetch(`/order/cart/update_quantity`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ItemID, Quantity })
+            }).then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    UpdateOrderSummary();
+                }
+            });
+        }
+
+        // function Checkout() {
+        //     const Items = document.querySelectorAll('.select-item:checked');
+
+        //     if (Items.length === 0) {
+        //         alert('Please select at least one item.');
+        //         return;
+        //     }
+
+        //     selectedItems = Array.from(Items).map(item => item.value);
+        //     // console.log(selectedItems)
+        //     window.location.href = `/order/checkout?items=${selectedItems.join(',')}`;
+        // }
+        function Checkout() {
+            const Items = document.querySelectorAll('.select-item:checked');
+                
+            if (Items.length === 0) {
+                alert('Please select at least one item.');
+                return;
+            }
+        
+            // Collect selected items along with their quantities
+            selectedItems = Array.from(Items).map(item => {
+                return {
+                    MenuID: item.value,
+                    Quantity: document.querySelector(`select[name="quantity"][data-item-id="${item.value}"]`).value
+                };
+            });
+        
+            console.log(encodeURIComponent(JSON.stringify(selectedItems)));
+        
+            // Pass the selected items as a URL parameter (or POST this data via fetch)
+            window.location.href = `/order/checkout?items=${encodeURIComponent(JSON.stringify(selectedItems))}`;
+        }
+    </script>
+</body>
+</html>
