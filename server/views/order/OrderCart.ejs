@@ -25,8 +25,8 @@
         }
 
         .cart-item img {
-            width: 100px;
-            height: 100px;
+            width: 250px;
+            height: 250px;
             object-fit: cover;
         }
 
@@ -53,10 +53,12 @@
             width: 25%;
             padding: 20px;
             border: 1px solid #ccc;
+            max-height: 200px;
         }
 
         .order-summary div {
             margin-bottom: 10px;
+            text-align: center;
         }
 
         .order-summary button {
@@ -71,9 +73,9 @@
 </head>
 <body>
     <%- include('../../component/order/Order_hd') %> <!-- Header -->
-    <h1>Cart</h1>
+    <h1 style="text-align: center; font-size: 36px; ">Cart</h1>
     
-    <div class="cart-container"></div>
+    <div class="cart-container">
         <!-- Top Side -->
         <div class="cart-items">
             <% CartItems.forEach(item => { %>
@@ -111,8 +113,7 @@
         </div>
     </div>
 
-   
-    <div id="div-bottom"></div> <!-- Make page looks not too empty -->
+    <div id="div-bottom3"></div> <!-- Make page looks not too empty -->
     <%- include('../../component/order/Order_ft') %> <!-- Footer -->
 
     <script>
