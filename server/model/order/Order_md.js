@@ -1,17 +1,17 @@
-const mongoose = require('mongoose');
-/** 
+const mongoose = require("mongoose");
+/**
  * Order Schema
- * @param {string} AccountID - 
+ * @param {string} AccountID -
  * @param {} Items - from Cart
  * @param {string} CustomerName -
- * @param {string} Address - 
- * @param {date} OrderDate - 
+ * @param {string} Address -
+ * @param {date} OrderDate -
  * @param {Number} Status - 1: READY FOR DELIVERY, 2: IN TRANSIT, 3: DELIVERED
  * @param {Number} PayStatus -  1: Unpaid, 2: Paid
- * @param {Number} ShippingCost - 
- * @param {Number} HST - 
+ * @param {Number} ShippingCost -
+ * @param {Number} HST -
  * @param {Number} TotalPrice - (Items.Price+Shipping Cost)*HST
- * @param {binData} ImageProof - 
+ * @param {binData} ImageProof -
  */
 
 const OrderSchema = new mongoose.Schema({
@@ -83,4 +83,4 @@ const OrderSchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model('Order', OrderSchema, 'Order')
+module.exports = mongoose.model("Order", OrderSchema, "Order");
