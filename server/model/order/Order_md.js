@@ -35,6 +35,11 @@ const OrderSchema = new mongoose.Schema({
             required: true,
         },
     }],
+    DriverID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Driver',
+        required: false, // It will be updated after the driver get this order
+    },
     CustomerName: {
         type: String,
         required: true,
