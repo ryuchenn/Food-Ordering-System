@@ -57,8 +57,8 @@ This project simulates the entire process of setting up a restaurant website, fr
 - Restaurant: /restaurant/home
 - Order: /order/OrderHome
 
-6. Register your account. There is sample is below.
-```json
+6. Register your account. There is sample at below.
+```
 UserName: "TestTestTest"
 Password: "Test@123"
 Email: "Test@GBCEats.com"
@@ -93,10 +93,10 @@ Using `MongoDB` for building collections. Check more database schema detail at `
 
 ```sql
 Table	"FatherField"	Field	    "ChildField"	DataType	Required	Default	 Remark
-Cart	                AccountID	            	ObjectId    TRUE		         Account._id
-Cart	 Items	        MenuID		                ObjectId	TRUE		         Menu._id
-Cart	 Items	        Quantity		            Number	    TRUE		
-Cart		            UpdateAt		            Date	    TRUE	    new Date()	
+Cart	                AccountID	            	ObjectId    TRUE                 Account._id
+Cart	 Items	        MenuID		                ObjectId    TRUE                 Menu._id
+Cart	 Items	        Quantity                    Number      TRUE		            
+Cart                    UpdateAt                    Date        TRUE        new Date()	
 ```
 
 ## Folder Structure
