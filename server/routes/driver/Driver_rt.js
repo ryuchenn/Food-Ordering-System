@@ -37,6 +37,30 @@ router.post("/:id/updateToTransit", VerifyTokenFromCookie, async (req, res) => {
     res.status(500).send("Error Updating order");
   }
 });
+//API to get the number or orders (with status Ready to deliver) for a driver
+router.get("/DriverOrder", VerifyTokenFromCookie, async (req, res) => {
+  try {
+    const orders = await Order.find({ Status: 1 });
+    res.render("driver/DriverOrder", { orders });
+  } catch (err) {
+    res.status(500).send("Error fetching orders.");
+  }
+});
+
+//API to change the order status to In Transit
+router.post("/:id/updateToTransit", VerifyTokenFromCookie, async (req, res) => {
+  try {
+    const loggedInUser = req.UserID;
+
+    await Order.findByIdAndUpdate(req.params.id, {
+      Status: 2,
+      DriverID: loggedInUser,
+    });
+    res.redirect("/driver/DriverOrder");
+  } catch (err) {
+    res.status(500).send("Error Updating order");
+  }
+});
 
 //API to get the list of orders (with status in transit) for specific driver
 router.get("/DriverUpdate", VerifyTokenFromCookie, async (req, res) => {
@@ -47,7 +71,7 @@ router.get("/DriverUpdate", VerifyTokenFromCookie, async (req, res) => {
     //Fetch orders with intransit status for the loggedIn-User
     const orders = await Order.find({
       Status: 2,
-      driver: loggedInUser,
+      DriverID: loggedInUser,
     });
 
     //Render all the orders in the ejs template
@@ -58,15 +82,25 @@ router.get("/DriverUpdate", VerifyTokenFromCookie, async (req, res) => {
 });
 
 //API to change the status of the order to delivered
-router.post("/:id/updateStatusDelievered", async (req, res) => {
-  try {
-    //Update the status of the order to delievered
-    await Order.findByIdAndUpdate(req.params.id, { Status: 3 });
+router.post(
+  "/:id/updateStatusDelievered",
+  VerifyTokenFromCookie,
+  async (req, res) => {
+    try {
+      const loggedInUser = req.UserID;
+      //Update the status of the order to delievered
+      // await Order.findByIdAndUpdate(req.params.id, { Status: 3 });
 
-    res.redirect("/driver/DriverOrder");
-  } catch (err) {
-    res.status(500).send("Error Updating order");
+      await Order.findByIdAndUpdate(req.params.id, {
+        Status: 3,
+        DriverID: loggedInUser,
+      });
+
+      res.redirect("/driver/DriverUpdate");
+    } catch (err) {
+      res.status(500).send("Error Updating order");
+    }
   }
-});
+);
 
 module.exports = router;

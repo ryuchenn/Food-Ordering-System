@@ -1,60 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/style/App.css">
     <link rel="stylesheet" href="/style/Driver.css">
+    <link rel="stylesheet" href="/style/Driver.css">
 </head>
+
 <body>
     <%- include('../../component/order/Order_hd') %> <!-- Header -->
 
-    <!-- <h1>This is Driver Update</h1> -->
+        <!-- <h1>This is Driver Update</h1> -->
 
-    <h2>In-Transit Orders</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Customer Name</th>
-                <th>Delivery Address</th>
-                <th>Items Ordered</th>
-                <th>Price</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% orders.forEach(order => { %>
+        <h2>In-Transit Orders</h2>
+        <table>
+            <thead>
                 <tr>
-                    <td><%= order.CustomerName %></td>
-                    <td><%= order.Address %></td>
-                    <td>
-                        <% let totalQuantity = 0; %>
-                        <% order.Items.forEach(item => { %>
-                            <% totalQuantity += item.Quantity; %>
-                        <% }) %>
-                        <p><%= totalQuantity %></p>
-                    </td>
-                    <td>
-                        <% let totalPrice = 0; %>
-                        <% order.Items.forEach(item => { %>
-                           <% totalPrice += item.Price %>
-                        <% }) %>
-                        <p>$ <%= totalPrice.toFixed(2) %></p>
-                    </td>
-                    <td>
-                        <!-- <form action="../driver/<%=order._id %>/updateStatusDelievered" method="POST"></form> -->
-                         <form action="../driver/<%=order._id %>/updateStatusDelievered" method="post"></form>
-                        <button type="submit" id="delieveredOrderBtn">Delivered</button>    
-                    </td>
-
+                    <th>Customer Name</th>
+                    <th>Delivery Address</th>
+                    <th>Items Ordered</th>
+                    <th>Price</th>
+                    <th>Actions</th>
                 </tr>
-            <% }) %>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <% orders.forEach(order=> { %>
+                    <tr>
+                        <td>
+                            <%= order.CustomerName %>
+                        </td>
+                        <td>
+                            <%= order.Address %>
+                        </td>
+                        <td>
+                            <% let totalQuantity=0; %>
+                                <% order.Items.forEach(item=> { %>
+                                    <% totalQuantity +=item.Quantity; %>
+                                        <% }) %>
+                                            <p>
+                                                <%= totalQuantity %>
+                                            </p>
+                        </td>
+                        <td>
+                            <% let totalPrice=0; %>
+                                <% order.Items.forEach(item=> { %>
+                                    <% totalPrice +=item.Price %>
+                                        <% }) %>
+                                            <p>$ <%= totalPrice.toFixed(2) %>
+                                            </p>
+                        </td>
+                        <td>
+                            <form action="../driver/<%=order._id %>/updateStatusDelievered" method="POST">
+                            <button type="submit" id="delieveredOrderBtn">Delivered</button>
+                        </form>
+                        </td>
 
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
 
-    <div id="div-bottom"></div> <!-- Make page looks not too empty -->
-    <%- include('../../component/order/Order_ft') %> <!-- Footer -->
+        <div id="div-bottom"></div> <!-- Make page looks not too empty -->
+        <%- include('../../component/order/Order_ft') %> <!-- Footer -->
 </body>
+
 </html>
