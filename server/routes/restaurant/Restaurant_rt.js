@@ -36,14 +36,14 @@ router.get("/menu", SetUserInformation, async (req, res, next) => {
             else
                 CartDataExists = false;
         }
-        res.render('order/OrderHome',  { MenuItems, CartDataExists, SuccessMessage: undefined, ErrorMessage: undefined});
+        res.render('restaurant/RestaurantMenu',  { MenuItems, CartDataExists, SuccessMessage: undefined, ErrorMessage: undefined});
     } catch (error) {
         console.error('Error fetching menu:', error);
         res.status(500).send('Error fetching menu');
     }
 });
 
-router.get("/restaurant", SetUserInformation, async (req, res, next) => {
+router.get("/", SetUserInformation, async (req, res, next) => {
     try {
         const RestaurantItems = await Restaurant.find();
         let CartDataExists = false;

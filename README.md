@@ -11,7 +11,9 @@ This project simulates the entire process of setting up a restaurant website, fr
     <img src="server/public/other/basic_structure/Restaurant.png" alt=“Workflow” />
 </div>
 - Ordering systen: (login & registration, cart & checkout, order status)
-
+<div align="center">
+    <img src="server/public/other/basic_structure/Order.png" alt=“Workflow” />
+</div>
 
 ## Workflow
 <div align="center">
