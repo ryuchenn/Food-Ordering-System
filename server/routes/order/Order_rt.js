@@ -265,6 +265,7 @@ router.post('/checkout/confirm', VerifyTokenFromCookie, async (req, res) => {
                 Quantity: item.Quantity,
                 Price: item.MenuID.Price
             })),
+            //DriverID: undefined, // It will be updated after the driver get this order
             CustomerName: CustomerName,
             Address: Address,
             OrderDate: new Date(),

@@ -36,7 +36,29 @@ router.get("/menu", SetUserInformation, async (req, res, next) => {
             else
                 CartDataExists = false;
         }
-        res.render('restaurant/RestaurantMenu',  { MenuItems, CartDataExists, SuccessMessage: undefined, ErrorMessage: undefined});
+        res.render('order/OrderHome',  { MenuItems, CartDataExists, SuccessMessage: undefined, ErrorMessage: undefined});
+    } catch (error) {
+        console.error('Error fetching menu:', error);
+        res.status(500).send('Error fetching menu');
+    }
+});
+
+router.get("/restaurant", SetUserInformation, async (req, res, next) => {
+    try {
+        const RestaurantItems = await Restaurant.find();
+        let CartDataExists = false;
+        // if (req.cookies.token)
+        // {   
+        //     AccountData = Account.findById(req.UserID)
+        //     const CartData = await Cart.findOne({AccountID: req.UserID});
+
+        //     // If there are more than one item store in Cart. Change the picture.
+        //     if (CartData && CartData.Items.length > 0)
+        //         CartDataExists = true;
+        //     else
+        //         CartDataExists = false;
+        // }
+        res.render('order/OrderHome',  { RestaurantItems, CartDataExists, SuccessMessage: undefined, ErrorMessage: undefined});
     } catch (error) {
         console.error('Error fetching menu:', error);
         res.status(500).send('Error fetching menu');
