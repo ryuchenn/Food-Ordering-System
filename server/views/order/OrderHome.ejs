@@ -3,16 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Order Home</title>
     <link rel="stylesheet" href="/style/App.css">
     <link rel="stylesheet" href="/style/Order.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .menu-item {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .menu-item h3 {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .menu-item p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .menu-item .add-to-cart-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .menu-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .categories-container {
+            display: flex;
+            overflow-x: auto; 
+            padding: 10px;
+            gap: 10px;
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+            max-width: 100%; 
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        .category-item {
+            flex-shrink: 0;
+            text-align: center;
+            font-size: 0.9rem;
+            width: 70px;
+            min-width: 70px; 
+        }
+
+        .category-item img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .banner-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: scroll;
+            padding: 20px;
+        }
+
+        .banner-item {
+            flex-shrink: 0;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            padding: 15px;
+            width: 300px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .banner-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .banner-item h3 {
+            font-size: 1rem;
+            margin: 10px 0;
+        }
+
+        .banner-item p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .banner-item button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            align-self: flex-start;
+        }
+
+        .categories-container::-webkit-scrollbar {
+            display: none; 
+        }
+
+    </style>
 </head>
 <body>
-    <%- include('../../component/order/Order_hd') %> <!-- Header -->
+    <%- include('../../component/order/Order_hd') %> 
 
-    <h1>This is Order Home</h1>
+    <h1 style="text-align: center;">Restaurants</h1>
 
-    <div id="div-bottom"></div> <!-- Make page looks not too empty -->
-    <%- include('../../component/order/Order_ft') %> <!-- Footer -->
+    <div class="categories-container">
+        <div class="category-item">
+            <img src="https://cdn-icons-png.freepik.com/512/3272/3272764.png" alt="Grocery">
+            <p>Grocery</p>
+        </div>
+        <div class="category-item">
+            <img src="https://cdn-icons-png.freepik.com/512/3272/3272764.png" alt="Pizza">
+            <p>Pizza</p>
+        </div>
+        <div class="category-item">
+            <img src="https://cdn-icons-png.freepik.com/512/3272/3272764.png" alt="Sushi">
+            <p>Sushi</p>
+        </div>
+        <div class="category-item">
+            <img src="https://cdn-icons-png.freepik.com/512/3272/3272764.png" alt="Sushi">
+            <p>Sushi</p>
+        </div>
+        <div class="category-item">
+            <img src="https://cdn-icons-png.freepik.com/512/3272/3272764.png" alt="Sushi">
+            <p>Sushi</p>
+        </div>
+        <div class="category-item">
+            <img src="https://cdn-icons-png.freepik.com/512/3272/3272764.png" alt="Sushi">
+            <p>Sushi</p>
+        </div>
+        <div class="category-item">
+            <img src="https://cdn-icons-png.freepik.com/512/3272/3272764.png" alt="Grocery">
+            <p>Grocery</p>
+        </div>
+        <div class="category-item">
+            <img src="https://cdn-icons-png.freepik.com/512/3272/3272764.png" alt="Pizza">
+            <p>Pizza</p>
+        </div>
+    </div>
+
+    <div class="banner-container">
+        <div class="banner-item">
+            <img src="https://cdn-icons-png.freepik.com/512/3272/3272764.png" alt="Nando's Deal">
+            <h3>BOGO ¼ chicken deal at Nando’s!</h3>
+            <p>Ends 10/13</p>
+            <button>Get the deal →</button>
+        </div>
+        <div class="banner-item">
+            <img src="https://cdn-icons-png.freepik.com/512/3272/3272764.png" alt="Red Swan Pizza Deal">
+            <h3>Buy one select pizza from Red Swan and get one FREE</h3>
+            <p>Ends 10/13</p>
+            <button>Get the deal →</button>
+        </div>
+    </div>
+
+    <div class="menu-container">
+        <% const MenuItems = [
+            { Name: "Swiss Chalet", Rating: "4.6", Image: "https://cdn-icons-png.freepik.com/512/3272/3272764.png" },
+            { Name: "Domino's Pizza", Rating: "4.5", Image: "https://cdn-icons-png.freepik.com/512/3272/3272764.png" },
+            { Name: "Biryaniwalla", Rating: "4.4", Image: "https://cdn-icons-png.freepik.com/512/3272/3272764.png" },
+            { Name: "Five Guys", Rating: "4.7", Image: "https://cdn-icons-png.freepik.com/512/3272/3272764.png" },
+            { Name: "KFC", Rating: "4.2", Image: "https://cdn-icons-png.freepik.com/512/3272/3272764.png" },
+            { Name: "Biryaniwalla", Rating: "4.4", Image: "https://cdn-icons-png.freepik.com/512/3272/3272764.png" },
+            { Name: "Five Guys", Rating: "4.7", Image: "https://cdn-icons-png.freepik.com/512/3272/3272764.png" },
+            { Name: "KFC", Rating: "4.2", Image: "https://cdn-icons-png.freepik.com/512/3272/3272764.png" },
+            { Name: "Biryaniwalla", Rating: "4.4", Image: "https://cdn-icons-png.freepik.com/512/3272/3272764.png" },
+            { Name: "Five Guys", Rating: "4.7", Image: "https://cdn-icons-png.freepik.com/512/3272/3272764.png" },
+            { Name: "KFC", Rating: "4.2", Image: "https://cdn-icons-png.freepik.com/512/3272/3272764.png" }
+        ]; %>
+
+        <% MenuItems.forEach(item => { %>
+            <div class="menu-item">
+                <img src="<%= item.Image %>" alt="<%= item.Name %>">
+                <h3><%= item.Name %></h3>
+                <p>Rating: <%= item.Rating %></p>
+                <button class="add-to-cart-btn" onclick="OpenMenu('<%= item.Name %>')">Open Menu</button>
+            </div>
+        <% }) %>
+    </div>
+
+    <div id="div-bottom"></div> 
+    <%- include('../../component/order/Order_ft') %> 
+
+    function OpenMenu(){
+
+    }
 </body>
 </html>
