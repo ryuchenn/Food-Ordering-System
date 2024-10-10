@@ -230,7 +230,7 @@ router.get("/update", VerifyTokenFromCookie, async (req, res) => {
       RoleData = await Restaurant.findOne({ AccountID: UserData._id });
     else if (UserData.IsDriver)
       RoleData = await Driver.findOne({ AccountID: UserData._id });
-    else if (UserData.IsCustomer)
+    else if (UserData.IsCustomer) 
       RoleData = await Customer.findOne({ AccountID: UserData._id });
 
     if (RoleData)
