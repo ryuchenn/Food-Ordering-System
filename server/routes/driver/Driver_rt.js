@@ -1,16 +1,5 @@
 const express = require("express");
-const express = require("express");
 const router = express.Router();
-const DriverSchema = require("../../model/driver/Driver_md");
-const Order = require("../../model/order/Order_md");
-const Menu = require("../../model/restaurant/Menu_md");
-const Restaurant = require("../../model/restaurant/Restaurant_md");
-const Cart = require("../../model/order/Cart_md");
-const Account = require("../../model/core/Account_md");
-const {
-  VerifyTokenFromCookie,
-  SetUserInformation,
-} = require("../../utils/core/Token");
 const DriverSchema = require("../../model/driver/Driver_md");
 const Order = require("../../model/order/Order_md");
 const Menu = require("../../model/restaurant/Menu_md");
@@ -47,6 +36,7 @@ router.post("/:id/updateToTransit", VerifyTokenFromCookie, async (req, res) => {
   } catch (err) {
     res.status(500).send("Error Updating order");
   }
+});
 //API to get the number or orders (with status Ready to deliver) for a driver
 router.get("/DriverOrder", VerifyTokenFromCookie, async (req, res) => {
   try {
@@ -97,8 +87,6 @@ router.post(
   VerifyTokenFromCookie,
   async (req, res) => {
     try {
-      console.log(req.params.id);
-
       const loggedInUser = req.UserID;
       //Update the status of the order to delievered
       // await Order.findByIdAndUpdate(req.params.id, { Status: 3 });
@@ -116,4 +104,3 @@ router.post(
 );
 
 module.exports = router;
-
