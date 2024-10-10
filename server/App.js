@@ -12,6 +12,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const port = process.env.DB_DEFAULT_PORT;
 const app = express();
 mongoose
   .connect(
@@ -21,7 +22,7 @@ mongoose
       process.env.DB_PASSWORD +
       "@" +
       process.env.DB_NAME +
-      ".mongodb.net/" +
+      ".5nu9r.mongodb.net/" +
       process.env.DB_USE
   )
   .then(() => console.log("Connect MongoDB Success!"))
@@ -60,8 +61,8 @@ app.use("/account", require("./routes/core/Account_rt"));
 // Code at server/tests/XXXXX.test.js
 
 // Unit test don't run this
-app.listen(process.env.DB_DEFAULT_PORT, () => {
-  console.log("Server is running");
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
 });
 
 // Unit test need to export this.
