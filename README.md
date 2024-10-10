@@ -1,18 +1,22 @@
 # OrderFlowManager
-Some GIF or pictures at here.
-
 ## Introduction
-This project is a simple Task Manager API built using Node.js, Express, and MongoDB with Mongoose. It allows users to create, read, update, and delete tasks. Tasks have attributes like title, description, due date, priority, and completion status.
+This project simulates the entire process of setting up a restaurant website, from placing orders on a delivery platform to having the delivery personnel deliver the meals to the customers. This project use Node.js, Express, EJS, and MongoDB with Mongoose. It allows customer to order the menu, visitor view the website, and host add the menu to their restaurant. In addition, I am preparing to develop an ordering system for in-house dining, which will be offered to customers dining in the restaurant using APP or website (Path: ./Indoor_Ordering ).
 
-<div align=“center”>
-    <img src="server/public/other/basic_structure/Workflow.png" alt=“Workflow” height=“200” width=“400”/>
-</div>
 
 
 ## Features
 - Basic RESTful API demonstration
-- Unit testing demonstration
-- Modular structure
+- Restaurant: One-page website, menu page, and add menu page
+<div align="center">
+    <img src="server/public/other/basic_structure/Restaurant.png" alt=“Workflow” />
+</div>
+- Ordering systen: (login & registration, cart & checkout, order status)
+
+
+## Workflow
+<div align="center">
+    <img src="server/public/other/basic_structure/Workflow.png" alt=“Workflow” height="500" width="500"/>
+</div>
 
 ## Quick Start
 
@@ -22,7 +26,7 @@ This project is a simple Task Manager API built using Node.js, Express, and Mong
     ```
 
 2. Set up environment variables:
-   - Create a `.env` file in the project root.
+   - Create a `.env` file in the project root. Check `Folder Structure` topic at bottom.
    - Add the following environment variables:
      ```
      DB_USER=yourMongoDBUsername
@@ -35,7 +39,7 @@ This project is a simple Task Manager API built using Node.js, Express, and Mong
      DB_RESTAURANT_PREFIX=/restaurant
      DB_ORDER_PREFIX=/order
      DB_DRIVER_PREFIX=/driver
-     GOOGLE_MAP_KEY=GoogleMapAPIKEY
+     GOOGLE_MAP_KEY=Your_Google_MAP_KEY
      ```
 
 3. Make sure MongoDB is running (either locally or via MongoDB Atlas).
@@ -48,35 +52,59 @@ This project is a simple Task Manager API built using Node.js, Express, and Mong
     npm start
     ```
 
-5. The server will run at `http://localhost:3005`. You can use a tool like Postman to interact with the API.
+5. The server will run at `http://localhost:3005`. You can use a tool like `Postman` to interact with the API.
+- Account: /account/register
+- Restaurant: /restaurant/home
+- Order: /order/OrderHome
+
+6. Register your account. There is sample is below.
+```json
+UserName: "TestTestTest"
+Password: "Test@123"
+Email: "Test@GBCEats.com"
+Phone: "437-123-4567"
+Address: "123 Dundas St, Toronto, ON"
+```
+
+7. Enjoy!
+
 
 ## API Endpoints
-Check more API detail at ./API_DOCS
-### 1. **GET /XXXXX**
+Check more API detail at `./API_DOCS`
+#### 1. **POST: /account/login**
+Login router
 
-YYYYYYYY
-
-- **URL**: `/restaurant/XXXXX`
-- **Method**: `GET`
+- **URL**: `/account/login`
+- **Method**: `POST`
 - **Response**:
     - Status: `200`
     - Body: An array of tasks in JSON format.
 ```json
 [
   {
-    "_id": "64f5a88f1c4d882ebd64b8b1",
-    "Name": "Sample menu",
-    "Description": "Description for the menu",
-    "Date": "2024-10-03T00:00:00.000Z",
-  }
+    "username": "TestTestTest",
+    "password": "Test@123", 
+}
 ]
 ```
 
-## Folder Structure
+## Database Schema
+Using `MongoDB` for building collections. Check more database schema detail at `./API_DOCS`
 
+```sql
+Table	"FatherField"	Field	    "ChildField"	DataType	Required	Default	 Remark
+Cart	                AccountID	            	ObjectId    TRUE		         Account._id
+Cart	 Items	        MenuID		                ObjectId	TRUE		         Menu._id
+Cart	 Items	        Quantity		            Number	    TRUE		
+Cart		            UpdateAt		            Date	    TRUE	    new Date()	
 ```
+
+## Folder Structure
+The basic structure in our project.
+```
+├── Indoor_Ordering/  # (Not Start Yet) Focusing on the in-house dining. It can also use in take-out situation.
 └── OrderFlowManager/ #(Develop Order: Model -> Controller -> Routes -> app)
-    ├── API_Docs     
+    ├── API_Docs     # API Router and Database Schema
     ├── config          # Config Setting
     ├── component       # UI element
     │   ├── core
@@ -121,6 +149,8 @@ YYYYYYYY
     │   ├── driver
     │   ├── order
     │   └── restaurant  
+    ├── .env            # Environment Parameter
     ├── App.js          # Main
     └── package.json
 ```
+
