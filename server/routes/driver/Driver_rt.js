@@ -26,10 +26,15 @@ router.get("/DriverOrder", VerifyTokenFromCookie, async (req, res) => {
 //API to change the order status to In Transit
 router.post("/:id/updateToTransit", VerifyTokenFromCookie, async (req, res) => {
   try {
-    await Order.findByIdAndUpdate(req.params.id, { Status: 2 });
+    const loggedInUser = req.UserID;
+
+    await Order.findByIdAndUpdate(req.params.id, {
+      Status: 2,
+      DriverID: loggedInUser,
+    });
     res.redirect("/driver/DriverOrder");
   } catch (err) {
-    res.status(500).send("Error Updating order status");
+    res.status(500).send("Error Updating order");
   }
 });
 
@@ -37,15 +42,13 @@ router.post("/:id/updateToTransit", VerifyTokenFromCookie, async (req, res) => {
 router.get("/DriverUpdate", VerifyTokenFromCookie, async (req, res) => {
   try {
     //Get the loggedIn userId using cookie middleware function
-    const loggedInUser = req.UserId;
+    const loggedInUser = req.UserID;
 
     //Fetch orders with intransit status for the loggedIn-User
-    // const orders = await Order.find({
-    //   Status: 2,
-    //   // driver: loggedInUser,
-    // });
-
-    const orders = await Order.find({ Status: 2 });
+    const orders = await Order.find({
+      Status: 2,
+      driver: loggedInUser,
+    });
 
     //Render all the orders in the ejs template
     res.render("driver/DriverUpdate", { orders });
@@ -54,16 +57,15 @@ router.get("/DriverUpdate", VerifyTokenFromCookie, async (req, res) => {
   }
 });
 
-router.post("/:id/DriverUpdate", VerifyTokenFromCookie, async (req, res) => {
+//API to change the status of the order to delivered
+router.post("/:id/updateStatusDelievered", async (req, res) => {
   try {
-    const orderId = req.params.id;
-
     //Update the status of the order to delievered
-    await Order.findByIdAndUpdate(orderId, { Status: 3 });
+    await Order.findByIdAndUpdate(req.params.id, { Status: 3 });
 
-    res.redirect("/driver/DriverUpdate");
+    res.redirect("/driver/DriverOrder");
   } catch (err) {
-    res.status(500).send("Error Updating order Status");
+    res.status(500).send("Error Updating order");
   }
 });
 

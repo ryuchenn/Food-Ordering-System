@@ -36,13 +36,15 @@
                         <p><%= totalQuantity %></p>
                     </td>
                     <td>
-                        <% totalPrice = 0; %>
+                        <% let totalPrice = 0; %>
                         <% order.Items.forEach(item => { %>
                            <% totalPrice += item.Price %>
                         <% }) %>
-                        <p><%= totalPrice %></p>
+                        <p>$ <%= totalPrice.toFixed(2) %></p>
                     </td>
-                    <td><form action="../driver/<%=order.AccountId %>/DriverUpdate" method="post"></form>
+                    <td>
+                        <!-- <form action="../driver/<%=order._id %>/updateStatusDelievered" method="POST"></form> -->
+                         <form action="../driver/<%=order._id %>/updateStatusDelievered" method="post"></form>
                         <button type="submit" id="delieveredOrderBtn">Delivered</button>    
                     </td>
 
