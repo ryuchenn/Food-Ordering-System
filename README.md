@@ -20,13 +20,13 @@ When customers arrive at the restaurant, they can use their phones to scan the Q
     <img src="server/public/other/basic_structure/Order.png" alt=“Workflow” />
 </div>
 <div align="center">
-    <img src="server/public/other/basic_structure/Order2.png" alt=“Workflow” />
+    <img src="server/public/other/basic_structure/Order2.png" alt=“Order Detail” />
 </div>
 <div align="center">
-    <img src="server/public/other/basic_structure/Order3.png" alt=“Workflow” />
+    <img src="server/public/other/basic_structure/Order3.png" alt=“Delivery1” />
 </div>
 <div align="center">
-    <img src="server/public/other/basic_structure/Order4.png" alt=“Workflow” />
+    <img src="server/public/other/basic_structure/Order4.png" alt=“Delivery2” />
 </div>
 - Dine-in systen: 
 
