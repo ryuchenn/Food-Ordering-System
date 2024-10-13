@@ -1,7 +1,12 @@
-# OrderFlowManager
+# Food Ordering System
 ## Introduction
-This project simulates the entire process of setting up a restaurant website, from placing orders on a delivery platform to having the delivery personnel deliver the meals to the customers. This project use Node.js, Express, EJS, and MongoDB with Mongoose. It allows customer to order the menu, visitor view the website, and host add the menu to their restaurant. In addition, I am preparing to develop an ordering system for in-house dining, which will be offered to customers dining in the restaurant using APP or website (Path: ./Indoor_Ordering ).
+This project aims to simulate the commercial application of Uber Eats and mobile ordering for dine-in service. 
+This project uses React.js, Node.js, Express, EJS, and MongoDB with Mongoose.
 
+- Food Delivery (Path: ./server): 
+Simulating the operational model of Uber's commercial application, we have built a restaurant and an ordering website similar to Uber Eats. We simulate the entire process of delivering food, from placing orders on a delivery platform to having the delivery personnel bring the meals to customers.
+- Dine-in Ordering (Path: ./Indoor_Ordering): 
+When customers arrive at the restaurant, they can use their phones to scan the QR code corresponding to their table and place an order. Once the order is placed, the data is sent to MongoDB, where it presents the corresponding order, table number, and meals to the kitchen for preparation.
 
 
 ## Features
@@ -14,6 +19,16 @@ This project simulates the entire process of setting up a restaurant website, fr
 <div align="center">
     <img src="server/public/other/basic_structure/Order.png" alt=“Workflow” />
 </div>
+<div align="center">
+    <img src="server/public/other/basic_structure/Order2.png" alt=“Workflow” />
+</div>
+<div align="center">
+    <img src="server/public/other/basic_structure/Order3.png" alt=“Workflow” />
+</div>
+<div align="center">
+    <img src="server/public/other/basic_structure/Order4.png" alt=“Workflow” />
+</div>
+- Dine-in systen: 
 
 ## Workflow
 <div align="center">
