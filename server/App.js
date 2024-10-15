@@ -47,6 +47,7 @@ const { DriverSchema } = require("./model/driver/Driver_md");
 const { AccountSchema } = require("./model/core/Account_md");
 const { CustomerSchema } = require("./model/core/Customer_md");
 
+//////////// EJS Module Import ////////////
 app.set("view engine", "ejs"); // above the endpoints. below the "const" statments
 app.set("views", path.join(__dirname, "views"));
 
@@ -57,12 +58,16 @@ app.use("/order", require("./routes/order/Order_rt"));
 app.use("/driver", require("./routes/driver/Driver_rt"));
 app.use("/account", require("./routes/core/Account_rt"));
 
-//////////// 6. Testing ////////////
+//////////// Testing ////////////
 // Code at server/tests/XXXXX.test.js
 
 // Unit test don't run this
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+// app.listen(port, () => {
+//   console.log(`Server is running at http://localhost:${port}`);
+// });
+
+app.listen(port, '0.0.0.0',() => {
+  console.log(`Server is running at http://0.0.0.0:${port}`);
 });
 
 // Unit test need to export this.
