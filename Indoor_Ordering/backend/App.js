@@ -8,12 +8,12 @@ const cors = require('cors');
 const port = process.env.DB_DEFAULT_PORT;
 const app = express();
 
-mongoose.connect("mongodb://" + process.env.DB_ConnectionString +"/")
+mongoose.connect("mongodb://" + process.env.DB_ConnectionString +"/" + process.env.DB_USE)
         .then(() => console.log("Connect MongoDB Success!"))
         .catch((err) => console.error("Connect MongoDB Error: " + err));
-app.use(cors());
+app.use(cors({ origin: process.env.Frontend_Setting, credentials: true }));
 app.use(bodyParser.json());
-app.use(express.json({ limit: "15mb" }));
+app.use(express.json({ limit: "15mb", type: 'application/json; charset=UTF-8'  }));
 app.use(express.urlencoded({ limit: "15mb", extended: true })); // allowed 50MB for url data
 app.use(cookieParser());
 app.use((req, res, next) => {
@@ -29,10 +29,10 @@ const { MenuSchema } = require("./model/menu_md");
 const { OrderSchema } = require("./model/order_md");
 
 //////////// RESTfulAPI Routes && Input Validation && Error Handling ////////////
-app.use("/account", require("./routes/auth_rt"));
-app.use("/cart", require("./routes/cart_rt"));
-app.use("/menu", require("./routes/menu_rt"));
-app.use("/order", require("./routes/order_rt"));
+app.use("/api/auth", require("./routes/auth_rt"));
+app.use("/api/cart", require("./routes/cart_rt"));
+app.use("/api/menu", require("./routes/menu_rt"));
+app.use("/api/order", require("./routes/order_rt"));
 
 //////////// Testing(Unit Test) ////////////
 

@@ -1,5 +1,21 @@
 const jwt = require('jsonwebtoken');
 
+// Middleware to verify JWT token
+const VerifyToken = (req, res, next) => {
+    const token = req.header('auth-token');
+    if (!token) {
+        return res.status(401).json({ message: 'Access denied' });
+    }
+
+    try {
+        const verified = jwt.verify(token, process.env.LOGGING_JWT_SECRET);
+        req.user = verified;
+        next();
+    } catch (error) {
+        res.status(400).json({ message: 'Invalid token' });
+    }
+};
+
 /**
  * Verify the user have the privilege to do the checkout, order, update the users information or other actions that need to login in our system.
  * @returns error message
@@ -57,4 +73,4 @@ const SetUserInformation = (req, res, next) => {
 
 }
 
-module.exports = {VerifyTokenFromCookie, SetUserInformation};
+module.exports = {VerifyToken, VerifyTokenFromCookie, SetUserInformation};
