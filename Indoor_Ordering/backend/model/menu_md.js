@@ -34,7 +34,21 @@ const MenuSchema = new mongoose.Schema({
     Description: {
         type: String,
         default: "",
-    }
+    },
+    Options: [{
+        Name: {
+            type: String,
+            required: false,
+        },
+        Values: [{
+            type: String,
+            required: false,
+        }],
+        Default: {
+            type: String,
+            required: false,
+        }
+    }]
 });
 
 module.exports = mongoose.model('Menu', MenuSchema, 'Menu');

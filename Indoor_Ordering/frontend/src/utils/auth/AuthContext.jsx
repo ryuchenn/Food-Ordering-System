@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
 import API from '../../API/backend';
-
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -18,19 +17,28 @@ export const AuthProvider = ({ children }) => {
             );
 
             setUser(res.data.user);
-            console.log(res.data.user)
-
             alert('Login successfully.');
         } catch (error) {
             console.error('Login error:', error);
         }
     };
 
-    const register = async (username, password) => {
+    const QRCode_Login = async (TableName) => {
+        try {
+            const res = await API.post(`/api/auth/login/QRCode/${TableName}`, {}, { withCredentials: true });
+
+            setUser(res.data.user);
+        } catch (error) {
+            console.error('Login error:', error);
+        }
+    };
+
+    const register = async (username, DisplayName, password) => {
         try {
             await API.post('/api/auth/register',
                 {
                     username: username,
+                    DisplayName: DisplayName,
                     password: password
                 });
             alert('Registration successful! Please log in.');
@@ -50,6 +58,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
+
         API.get('/api/auth/check', { withCredentials: true })
             .then(res => {
                 setUser(res.data.user);
@@ -57,10 +66,17 @@ export const AuthProvider = ({ children }) => {
             .catch(() => {
                 setUser(null);
             });
+        // fetch('/api/auth/check', {
+        //     method: 'POST',
+        //     credentials: 'include',  
+        //     headers: {
+        //       'Content-Type': 'application/json'
+        //     },
+        //   });
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, login, register, logout }}>
+        <AuthContext.Provider value={{ user, login, QRCode_Login, register, logout }}>
             {children}
         </AuthContext.Provider>
     );

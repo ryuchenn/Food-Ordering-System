@@ -3,10 +3,10 @@ import React from 'react';
 function CategoryBar() {
     return (
         <nav className="category-bar">
-            <button>Main Course</button>
-            <button>Side Dishes</button>
-            <button>Drinks</button>
-            <button>Other</button>
+            <a href="#main-course">Main Course</a>
+            <a href="#side">Side</a>
+            <a href="#drink">Drink</a>
+            <a href="#other">Other</a>
         </nav>
     );
 }

@@ -1,18 +1,18 @@
 import '../style/global.css';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect, useContext } from 'react';
 import Header from '../component/Header';
 import CategoryBar from '../component/CategoryBar';
 import Menu from '../container/Menu';
-import Cart from './public/Cart';
+import API from '../API/backend';
+// import AuthContext from '../utils/auth/AuthContext';
 
 function Home() {
   const [menuItems, setMenuItems] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+  // const { QRCode_Login } = useContext(AuthContext);
 
   useEffect(() => {
     // Fetch menu items from backend
-    axios.get('/api/menu')
+    API.get('/api/menu')
       .then(res => setMenuItems(res.data))
       .catch(err => console.log(err));
   }, []);
@@ -22,7 +22,6 @@ function Home() {
       <Header />
       <CategoryBar />
       <Menu menuItems={menuItems} />
-      <Cart cartItems={cartItems} /> 
     </div>
   );
 }

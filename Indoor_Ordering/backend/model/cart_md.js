@@ -19,6 +19,16 @@ const CartSchema = new mongoose.Schema({
             ref: 'Menu',
             required: true,
         },
+        ItemOptions: [{
+            Name: {
+                type: String,
+                required: true,
+            },
+            Value: {
+                type: String,
+                required: true,
+            }
+        }],
         Quantity: {
             type: Number,
             required: true,

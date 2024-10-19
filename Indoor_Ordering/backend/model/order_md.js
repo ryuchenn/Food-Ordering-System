@@ -29,12 +29,26 @@ const OrderSchema = new mongoose.Schema({
         ref: 'Account',
         default: null,
     },
+    AccountDisplayName: { // Because the QRCode login user will be deleted in the certain time, it will have error when it can't populate the data from Account collection.
+        type: String,
+        default: null,
+    }, 
     Items: [{
         MenuID: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Menu',
             required: true,
         },
+        ItemOptions: [{
+            Name: {
+                type: String,
+                required: true,
+            },
+            Value: {
+                type: String,
+                required: true,
+            }
+        }],
         Quantity: {
             type: Number,
             required: true,
@@ -42,6 +56,11 @@ const OrderSchema = new mongoose.Schema({
         Price: {
             type: Number,
             required: true,
+        },
+        Done: {
+            type: Boolean,
+            required: true,
+            default: false,
         }
     }],
     Driver: {
@@ -69,6 +88,10 @@ const OrderSchema = new mongoose.Schema({
             type: Date,
             default: null,
         }
+    },
+    TotalPrice: {
+        type: Number,
+        required: true,
     },
     Status: {
         type: Number,

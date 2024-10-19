@@ -9,10 +9,6 @@ function Header() {
                 <h2>OMG Japanese Restaurant</h2>
                 <span>Table 12</span>
             </div>
-            <div className="search-cart">
-                <i className="search-icon">🔍</i>
-                <i className="cart-icon">🛒</i>
-            </div>
         </header>
     );
 }

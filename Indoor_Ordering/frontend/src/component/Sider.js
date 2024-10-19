@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AddMenuItem from '../views/auth/AddMenuItem';
 import AuthContext from '../utils/auth/AuthContext';
 
 function Sider() {
     const navigate = useNavigate();
     const { logout, user } = useContext(AuthContext);
+    const [cartItems, setCartItems] = useState([]);
 
     const handleLogin = () => {
         navigate('/login');
@@ -15,21 +15,39 @@ function Sider() {
         navigate('/register'); 
     };
 
+    const handleCart = () => {
+        navigate(`/cart`); 
+    };
+    const handleAddMenu = () => {
+        navigate('/AddMenuItem'); 
+    };
+    const handleUnPaidOrder = () => {
+        navigate('/UnPaidOrder'); 
+    };
+    const handleOrderSearch = () => {
+        navigate('/OrderSearch'); 
+    };
+
     return (
         <div className="sider">
-            <button onClick={handleLogin}>Login</button>
-            <button onClick={handleRegister}>Register</button>
             <button>Language Switch</button>
+            <button onClick={handleCart}>Cart</button>
+            <button onClick={handleAddMenu}>AddMenuItem</button>
+            <button onClick={handleUnPaidOrder}>UnPaidOrder</button>
+            <button onClick={handleOrderSearch}>OrderSearch</button>
+            <button onClick={handleRegister}>Register</button>
+
             {user ? (
                 <>
-                    <span>Welcome, {user.UserName}</span>
+                    <span>Welcome, {user.DisplayName}</span>
                     <button onClick={logout}>Logout</button>
                 </>
             ) : (
-                <span>Please log in</span>
+                <>
+                <button onClick={handleLogin}>Login</button>
+                </>
+                
             )}
-
-            <AddMenuItem/>
         </div>
     );
 }
