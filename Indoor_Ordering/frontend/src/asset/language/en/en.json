@@ -1,0 +1,121 @@
+{
+    "Common": 
+    {
+        "hello": "hello",
+        "RestaurantName": "OMG Japanese Restaurant",
+        "Table": "Table Number",
+        "Main Course": "Main Course",
+        "Side": "Side",
+        "Drink": "Drink",
+        "Other": "Other",
+        "Price": "Price"
+    },
+    "MenuDetail": 
+    {
+        "Add-ons": "Add-ons",
+        "Price": "Price",
+        "Add To Cart": "Add To Cart",
+        "Items added to cart": "Items added to cart",
+        "Failed to add items to cart": "Failed to add items to cart",
+        "Please Login!": "Please Login!"
+    },
+    "User": 
+    {
+        "Register": "Register",
+        "Username": "Username",
+        "Display Name(Preffered Name)": "Display Name (Preferred Name)",
+        "Password": "Password",
+        "Login": "Login",
+        "Login successfully.": "Login successfully.",
+        "Registration successful! Please log in.": "Registration successful! Please log in.",
+        "Logged out successfully.": "Logged out successfully."
+    },
+    "TopNavBar": 
+    {
+        "Home": "Home",
+        "Cart": "Cart",
+        "AddMenuItem": "Add Menu Item",
+        "UnPaidOrder": "Orders",
+        "OrderSearch": "Order History",
+        "Register": "Register",
+        "Login": "Login",
+        "Logout": "Logout"
+    },
+    "Food": 
+    {
+        "Ramen": "Ramen",
+        "Gyudon": "Gyudon",
+        "Sushi": "Sushi",
+        "Dumpling": "Dumpling",
+        "Cola": "Cola",
+        "Sake": "Sake",
+        "Rice": "Rice"
+    }, 
+    "FoodOptions": 
+    {
+        "Noodle": "Noodle",
+        "Spicy": "Spicy",
+        "Meat": "Meat",
+        "Thin": "Thin",
+        "Thick": "Thick",
+        "None": "None",
+        "Pork": "Pork",
+        "Beef": "Beef",
+        "Chicken": "Chicken"
+    }, 
+    "Cart": 
+    {
+        "Cart": "Cart",
+        "SubTotal": "SubTotal",
+        "Tax": "Tax",
+        "Total": "Total",
+        "Place Order": "Place Order",
+        "Quantity": "Quantity",
+        "Price": "Price",
+        "Delete": "Delete",
+        "Order placed successfully!": "Order placed successfully!"
+    },
+    "AddMenuItem":
+    {
+        "Name": "Name",
+        "Main Course": "Main Course",
+        "Side": "Side",
+        "Drink": "Drink",
+        "Other": "Other",
+        "Add-On": "Add-On",
+        "Description": "Description",
+        "Options": "Options (Spicy, Size...)",
+        "Option Name": "Option Name",
+        "Value": "Value",
+        "Default Value": "Default Value",
+        "Add Option": "Add Option",
+        "Add Menu Item": "Add Menu Item",
+        "Add Value": "Add Value",
+        "Remove Option": "Remove Option",
+        "Quantity": "Quantity",
+        "Price": "Price",
+        "Menu item added successfully!": "Menu item added successfully!",
+        "Failed to add menu item!": "Failed to add menu item!"
+    },
+    "Order":
+    {
+        "Unpaid Orders": "Unpaid Orders",
+        "Type": "Type",
+        "Order Date": "Order Date",
+        "OrderDate": "Order Date",
+        "Order Search": "Order Search",
+        "DisplayName/TableName": "Display Name/Table Number",
+        "Items": "Items",
+        "ItemOptions": "Item Options",
+        "Quantity": "Quantity",
+        "Price": "Price",
+        "TotalPrice": "Total Price",
+        "Actions": "Actions",
+        "Mark as Paid": "Mark as Paid",
+
+        "All": "All",
+        "Dine-in": "Dine-in",
+        "Take-out": "Take-out",
+        "Delivery": "Delivery"
+    }
+}

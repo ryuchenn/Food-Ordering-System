@@ -1,8 +1,11 @@
 import React, { createContext, useState, useEffect } from 'react';
 import API from '../../API/backend';
+import { useTranslation } from "react-i18next";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const { t } = useTranslation();
+
     const [user, setUser] = useState(null);
 
     const login = async (username, password) => {
@@ -17,7 +20,7 @@ export const AuthProvider = ({ children }) => {
             );
 
             setUser(res.data.user);
-            alert('Login successfully.');
+            alert(t('Login successfully.'));
         } catch (error) {
             console.error('Login error:', error);
         }
@@ -41,7 +44,7 @@ export const AuthProvider = ({ children }) => {
                     DisplayName: DisplayName,
                     password: password
                 });
-            alert('Registration successful! Please log in.');
+            alert(t('Registration successful! Please log in.'));
         } catch (error) {
             console.error('Registration error:', error);
         }
@@ -51,7 +54,7 @@ export const AuthProvider = ({ children }) => {
         try {
             await API.post('/api/auth/logout', {}, { withCredentials: true });
             setUser(null);
-            alert('Logged out successfully.');
+            alert(t('Logged out successfully.'));
         } catch (error) {
             console.error('Logout error:', error);
         }

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import API from '../../API/backend';
+import { useTranslation } from "react-i18next";
+import Sider from '../../component/Sider';
 
 function AddMenuItem() {
+    const { t } = useTranslation();
     const [name, setName] = useState('');
     const [category, setCategory] = useState(1);
     const [quantity, setQuantity] = useState(100);
@@ -60,70 +63,73 @@ function AddMenuItem() {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            alert('Menu item added successfully!');
+            alert(t('Menu item added successfully!'));
         } catch (error) {
-            alert('Failed to add menu item!');
+            alert(t('Failed to add menu item!'));
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
-            <select value={category} onChange={(e) => setCategory(Number(e.target.value))}>
-                <option value={1}>Main Course</option>
-                <option value={2}>Side</option>
-                <option value={3}>Drink</option>
-                <option value={4}>Other</option>
-                <option value={5}>Add-On</option>
-            </select>
-            <input type="number" placeholder="Quantity" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} required />
-            <input type="number" placeholder="Price" value={price} onChange={(e) => setPrice(Number(e.target.value))} required />
-            <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
-            <input type="file" onChange={(e) => setImage(e.target.files[0])} required />
+        <>
+            <Sider></Sider>
+            <form onSubmit={handleSubmit}>
+                <input type="text" placeholder={t('AddMenuItem.Name')} value={name} onChange={(e) => setName(e.target.value)} required />
+                <select value={category} onChange={(e) => setCategory(Number(e.target.value))}>
+                    <option value={1}>{t('AddMenuItem.Main Course')}</option>
+                    <option value={2}>{t('AddMenuItem.Side')}</option>
+                    <option value={3}>{t('AddMenuItem.Drink')}</option>
+                    <option value={4}>{t('AddMenuItem.Other')}</option>
+                    <option value={5}>{t('AddMenuItem.Add-On')}</option>
+                </select>
+                <input type="number" placeholder={t('AddMenuItem.Quantity')} value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} required />
+                <input type="number" placeholder={t('AddMenuItem.Price')} value={price} onChange={(e) => setPrice(Number(e.target.value))} required />
+                <textarea placeholder={t('AddMenuItem.Description')} value={description} onChange={(e) => setDescription(e.target.value)} />
+                <input type="file" onChange={(e) => setImage(e.target.files[0])} required />
 
-            <h3>Options</h3>
-            {options.map((option, index) => (
-                <div key={index} className="option">
-                    <input
-                        type="text"
-                        placeholder="Option Name"
-                        value={option.Name}
-                        onChange={(e) => updateOption(index, 'Name', e.target.value)}
-                        required
-                    />
-                    <input
-                        type="text"
-                        placeholder="Default Value"
-                        value={option.Default}
-                        onChange={(e) => updateOption(index, 'Default', e.target.value)}
-                    />
-                    <button type="button" onClick={() => addOptionValue(index)}>
-                        Add Value
-                    </button>
-                    <button type="button" onClick={() => removeOption(index)}>
-                        Remove Option
-                    </button>
-                    <div className="option-values">
-                        {option.Values.map((value, valueIndex) => (
-                            <input
-                                key={valueIndex}
-                                type="text"
-                                placeholder="Value"
-                                value={value}
-                                onChange={(e) => updateOptionValue(index, valueIndex, e.target.value)}
-                                required
-                            />
-                        ))}
+                <h3>{t('AddMenuItem.Options')}</h3>
+                {options.map((option, index) => (
+                    <div key={index} className="option">
+                        <input
+                            type="text"
+                            placeholder={t('AddMenuItem.Option Name')}
+                            value={option.Name}
+                            onChange={(e) => updateOption(index, 'Name', e.target.value)}
+                            required
+                        />
+                        <input
+                            type="text"
+                            placeholder={t('AddMenuItem.Default Value')}
+                            value={option.Default}
+                            onChange={(e) => updateOption(index, 'Default', e.target.value)}
+                        />
+                        <button type="button" onClick={() => addOptionValue(index)}>
+                            {t('AddMenuItem.Add Value')}
+                        </button>
+                        <button type="button" onClick={() => removeOption(index)}>
+                            {t('AddMenuItem.Remove Option')}
+                        </button>
+                        <div className="option-values">
+                            {option.Values.map((value, valueIndex) => (
+                                <input
+                                    key={valueIndex}
+                                    type="text"
+                                    placeholder={t('AddMenuItem.Value')}
+                                    value={value}
+                                    onChange={(e) => updateOptionValue(index, valueIndex, e.target.value)}
+                                    required
+                                />
+                            ))}
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
 
-            <button type="button" onClick={addOption}>
-                Add Option
-            </button>
+                <button type="button" onClick={addOption}>
+                    {t('AddMenuItem.Add Option')}
+                </button>
 
-            <button type="submit">Add Menu Item</button>
-        </form>
+                <button type="submit">{t('AddMenuItem.Add Menu Item')}</button>
+            </form>
+        </>
     );
 }
 

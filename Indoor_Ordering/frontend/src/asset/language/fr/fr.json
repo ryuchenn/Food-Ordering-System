@@ -1,0 +1,121 @@
+{
+    "Common": 
+    {
+        "hello": "bonjour",
+        "RestaurantName": "OMG Restaurant Japonais",
+        "Table": "Numéro de Table",
+        "Main Course": "Plat Principal",
+        "Side": "Accompagnement",
+        "Drink": "Boisson",
+        "Other": "Autre",
+        "Price": "Prix"
+    },
+    "MenuDetail": 
+    {
+        "Add-ons": "Suppléments",
+        "Price": "Prix",
+        "Add To Cart": "Ajouter au Panier",
+        "Items added to cart": "Articles ajoutés au panier",
+        "Failed to add items to cart": "Échec de l'ajout des articles au panier",
+        "Please Login!": "Veuillez vous connecter !"
+    },
+    "User": 
+    {
+        "Register": "S'inscrire",
+        "Username": "Nom d'utilisateur",
+        "Display Name(Preffered Name)": "Nom Affiché (Nom Préféré)",
+        "Password": "Mot de Passe",
+        "Login": "Connexion",
+        "Login successfully.": "Connexion réussie.",
+        "Registration successful! Please log in.": "Inscription réussie ! Veuillez vous connecter.",
+        "Logged out successfully.": "Déconnexion réussie."
+    },
+    "TopNavBar": 
+    {
+        "Home": "Accueil",
+        "Cart": "Panier",
+        "AddMenuItem": "Ajouter un Produit",
+        "UnPaidOrder": "Commandes",
+        "OrderSearch": "Historique des Commandes",
+        "Register": "S'inscrire",
+        "Login": "Connexion",
+        "Logout": "Déconnexion"
+    },
+    "Food": 
+    {
+        "Ramen": "Ramen",
+        "Gyudon": "Gyudon",
+        "Sushi": "Sushi",
+        "Dumpling": "Ravioli",
+        "Cola": "Coca",
+        "Sake": "Saké",
+        "Rice": "Riz"
+    }, 
+    "FoodOptions": 
+    {
+        "Noodle": "Nouilles",
+        "Spicy": "Épicé",
+        "Meat": "Viande",
+        "Thin": "Fines",
+        "Thick": "Épaisses",
+        "None": "Aucun",
+        "Pork": "Porc",
+        "Beef": "Boeuf",
+        "Chicken": "Poulet"
+    }, 
+    "Cart": 
+    {
+        "Cart": "Panier",
+        "SubTotal": "Sous-total",
+        "Tax": "Taxe",
+        "Total": "Total",
+        "Place Order": "Passer la Commande",
+        "Quantity": "Quantité",
+        "Price": "Prix",
+        "Delete": "Supprimer",
+        "Order placed successfully!": "Commande passée avec succès !"
+    },
+    "AddMenuItem":
+    {
+        "Name": "Nom du Produit",
+        "Main Course": "Plat Principal",
+        "Side": "Accompagnement",
+        "Drink": "Boisson",
+        "Other": "Autre",
+        "Add-On": "Supplément",
+        "Description": "Description",
+        "Options": "Options (Épicé, Taille...)",
+        "Option Name": "Nom de l'Option",
+        "Value": "Valeur",
+        "Default Value": "Valeur par Défaut",
+        "Add Option": "Ajouter une Option",
+        "Add Menu Item": "Ajouter le Produit",
+        "Add Value": "Ajouter Valeur",
+        "Remove Option": "Supprimer l'Option",
+        "Quantity": "Quantité",
+        "Price": "Prix",
+        "Menu item added successfully!": "Article ajouté au menu avec succès !",
+        "Failed to add menu item!": "Échec de l'ajout au menu !"
+    },
+    "Order":
+    {
+        "Unpaid Orders": "Commandes Non Payées",
+        "Type": "Type",
+        "Order Date": "Date de Commande",
+        "OrderDate": "Date de Commande",
+        "Order Search": "Recherche de Commande",
+        "DisplayName/TableName": "Nom d'utilisateur/Numéro de Table",
+        "Items": "Articles",
+        "ItemOptions": "Options d'Article",
+        "Quantity": "Quantité",
+        "Price": "Prix",
+        "TotalPrice": "Prix Total",
+        "Actions": "Actions",
+        "Mark as Paid": "Marquer comme Payé",
+
+        "All": "Tous",
+        "Dine-in": "Sur place",
+        "Take-out": "À emporter",
+        "Delivery": "Livraison"
+    }
+}

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import API from '../../API/backend';
+import { useTranslation } from "react-i18next";
+import Sider from '../../component/Sider';
 
 function UnpaidOrder() {
+    const { t } = useTranslation();
     const [orders, setOrders] = useState([]); // This form
 
      // (MM/DD, HH:MM:SS AM,PM）
@@ -59,64 +62,67 @@ function UnpaidOrder() {
     };
 
     return (
-        <div>
-            <h2>Unpaid Orders</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>OrderDate</th>
-                        <th>Type</th>
-                        <th>DisplayName/TableName</th>
-                        <th>Items</th>
-                        <th>ItemOptions</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>TotalPrice</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {orders.map(order => (
-                        <tr key={order._id}>
-                            <td>{formatDate(order.OrderDate)}</td>
-                            <td>
-                                {order.Type === 1 ? 'Dine-in' :
-                                order.Type === 2 ? 'Take-out' :
-                                'Delivery'}
-                            </td>
-                            <td>{order.AccountDisplayName}</td>
-                            <td>
-                                {order.Items.map(item => (
-                                    <div id={item._id}>
-                                        <input
-                                            type="checkbox"
-                                            checked={item.Done} 
-                                            onChange={(e) => handleCheckboxChange(item._id, e.target.checked)}
-                                        />
-                                        {item.MenuID.Name}
-                                    </div>
-                                ))}
-                            </td>
-                            <td>
-                                {order.Items.map((item, index) => (
-                                    <div key={index}>
-                                        {item.ItemOptions.map(option => (
-                                            <div key={option.Name}>{option.Name}: {option.Value}</div>
-                                        ))}
-                                    </div>
-                                ))}
-                            </td>
-                            <td>{order.Items.map(item => <div>{item.Quantity}</div>)}</td>
-                            <td>{order.Items.map(item => <div>{item.Price.toFixed(2)}</div>)}</td>
-                            <td>${order.TotalPrice.toFixed(2)}</td>
-                            <td>
-                                <button onClick={() => handleMarkAsPaid(order._id)}>Mark as Paid</button>
-                            </td>
+        <>
+            <Sider></Sider>
+            <div>
+                <h2>{t('Order.Unpaid Orders')}</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{t('Order.OrderDate')}</th>
+                            <th>{t('Order.Type')}</th>
+                            <th>{t('Order.DisplayName/TableName')}</th>
+                            <th>{t('Order.Items')}</th>
+                            <th>{t('Order.ItemOptions')}</th>
+                            <th>{t('Order.Quantity')}</th>
+                            <th>{t('Order.Price')}</th>
+                            <th>{t('Order.TotalPrice')}</th>
+                            <th>{t('Order.Actions')}</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {orders.map(order => (
+                            <tr key={order._id}>
+                                <td>{formatDate(order.OrderDate)}</td>
+                                <td>
+                                    {order.Type === 1 ? t('Order.Dine-in') :
+                                    order.Type === 2 ? t('Order.Take-out') :
+                                                       t('Order.Delivery')}
+                                </td>
+                                <td>{order.AccountDisplayName}</td>
+                                <td>
+                                    {order.Items.map(item => (
+                                        <div id={item._id}>
+                                            <input
+                                                type="checkbox"
+                                                checked={item.Done} 
+                                                onChange={(e) => handleCheckboxChange(item._id, e.target.checked)}
+                                            />
+                                            {t(`Food.${item.MenuID.Name}`)}
+                                        </div>
+                                    ))}
+                                </td>
+                                <td>
+                                    {order.Items.map((item, index) => (
+                                        <div key={index}>
+                                            {item.ItemOptions.map(option => (
+                                                <div key={option.Name}>{t(`FoodOptions.${option.Name}`)}: {t(`FoodOptions.${option.Value}`)}</div>
+                                            ))}
+                                        </div>
+                                    ))}
+                                </td>
+                                <td>{order.Items.map(item => <div>{item.Quantity}</div>)}</td>
+                                <td>{order.Items.map(item => <div>{item.Price.toFixed(2)}</div>)}</td>
+                                <td>${order.TotalPrice.toFixed(2)}</td>
+                                <td>
+                                    <button onClick={() => handleMarkAsPaid(order._id)}>{t('Order.Mark as Paid')}</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </>
     );
 }
 

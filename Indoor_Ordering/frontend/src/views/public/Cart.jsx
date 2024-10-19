@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import API from '../../API/backend';
 import AuthContext from '../../utils/auth/AuthContext';
+import { useTranslation } from "react-i18next";
+import Sider from '../../component/Sider';
 
-function Cart({ accountId }) {
+function Cart() {
+    const { t } = useTranslation();
     const [cartItems, setCartItems] = useState([]);
     const [subtotal, setSubtotal] = useState(0);
     const { user } = useContext(AuthContext);
@@ -85,7 +88,7 @@ function Cart({ accountId }) {
                                         TotalPrice: parseFloat(total.toFixed(2)),
                                        })
             .then(() => {
-                alert('Order placed successfully!');
+                alert(t('Order placed successfully!'));
                 setCartItems([]); // clear the cart
                 setSubtotal(0);
             })
@@ -93,29 +96,33 @@ function Cart({ accountId }) {
     };
 
     return (
-        <div className="cart">
-            <h2>Your Cart</h2>
-            <ul>
-                {cartItems.map(item => (
-                    <li key={item.MenuID} className="cart-item">
-                        <span>{item.Name}</span>
-                        <span>Quantity: 
-                            <button onClick={() => handleUpdateQuantity(item.MenuID, item.Quantity - 1)}>-</button>
-                            {item.Quantity}
-                            <button onClick={() => handleUpdateQuantity(item.MenuID, item.Quantity + 1)}>+</button>
-                        </span>
-                        <span>Price: ${item.Price.toFixed(2)}</span>
-                        <button onClick={() => handleDeleteItem(item.MenuID)}>Delete</button>
-                    </li>
-                ))}
-            </ul>
-            <div className="cart-summary">
-                <div>Subtotal: ${subtotal.toFixed(2)}</div>
-                <div>Tax: ${tax.toFixed(2)}</div>
-                <div>Total: ${total.toFixed(2)}</div>
-                <button onClick={handleCheckout}>Place Order</button>
+        <>
+            <Sider></Sider>
+            <div className="cart">
+                <h2>{t('Cart.Cart')}</h2>
+                <ul>
+                    {cartItems.map(item => (
+                        <li key={item.MenuID} className="cart-item">
+                            <span>{t(`Food.${item.Name}`)} </span>
+                            <span>{t('Cart.Quantity')}
+                                <button onClick={() => handleUpdateQuantity(item.MenuID, item.Quantity - 1)}>-</button>
+                                    {item.Quantity}
+                                <button onClick={() => handleUpdateQuantity(item.MenuID, item.Quantity + 1)}>+</button>
+                            </span>
+                            <span>{t('Cart.Price')}: ${item.Price.toFixed(2)}</span>
+                            <button onClick={() => handleDeleteItem(item.MenuID)}>{t('Cart.Delete')}</button>
+                        </li>
+                    ))}
+                </ul>
+                <div className="cart-summary">
+                    <div>{t('Cart.SubTotal')}: ${subtotal.toFixed(2)}</div>
+                    <div>{t('Cart.Tax')}: ${tax.toFixed(2)}</div>
+                    <div>{t('Cart.Total')}: ${total.toFixed(2)}</div>
+                    <button onClick={handleCheckout}>{t('Cart.Place Order')}</button>
+                </div>
             </div>
-        </div>
+        </>
+        
     );
 }
 

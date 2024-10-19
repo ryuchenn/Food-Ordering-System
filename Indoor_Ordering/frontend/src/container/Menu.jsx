@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { useTranslation } from "react-i18next";
 function Menu({ menuItems }) {
+    const { t } = useTranslation();
     const navigate = useNavigate();
     
     // Sort the Category 1~5
@@ -15,13 +16,13 @@ function Menu({ menuItems }) {
     const getCategoryTitle = (category) => {
         switch (category) {
             case 1:
-                return "Main Course";
+                return t('Common.Main Course');
             case 2:
-                return "Side";
+                return t('Common.Side');
             case 3:
-                return "Drink";
+                return t('Common.Drink');
             case 4:
-                return "Other";
+                return t('Common.Other');
             default:
                 return "";
         }
@@ -60,9 +61,9 @@ function Menu({ menuItems }) {
                             
                             <div className="menu-item" onClick={() => handleItemClick(item._id)}>
                                 <img src={item.Image} alt={item.Name} />
-                                <h3>{item.Name}</h3>
+                                <h3>{t(`Food.${item.Name}`)}</h3>
                                 <p>{item.Description}</p>
-                                <p>Price: ${item.Price}</p>
+                                <p>{t('Common.Price')}: ${item.Price}</p>
                             </div>
                         </div>
                     );

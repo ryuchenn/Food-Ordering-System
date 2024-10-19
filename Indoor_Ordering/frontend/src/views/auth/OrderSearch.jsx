@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import API from '../../API/backend';
+import { useTranslation } from "react-i18next";
+import Sider from '../../component/Sider';
 
 function OrderSearch() {
+    const { t } = useTranslation();
     const [orders, setOrders] = useState([]);
     const [typeFilter, setTypeFilter] = useState('');
     const [dateFilter, setDateFilter] = useState('');
@@ -29,74 +32,77 @@ function OrderSearch() {
     }, []);
 
     return (
-        <div>
-            <h2>Order Search</h2>
+       <>
+            <Sider></Sider>
             <div>
-                <label>
-                    Type:
-                    <select onChange={(e) => setTypeFilter(e.target.value)} value={typeFilter}>
-                        <option value="">All</option>
-                        <option value="1">Dine-in</option>
-                        <option value="2">Take-out</option>
-                        <option value="3">Delivery</option>
-                    </select>
-                </label>
-                <label>
-                    Order Date:
-                    <input
-                        type="date"
-                        onChange={(e) => setDateFilter(e.target.value)}
-                        value={dateFilter}
-                    />
-                </label>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>OrderDate</th>
-                        <th>Type</th>
-                        <th>DisplayName/TableName</th>
-                        <th>Items</th>
-                        <th>ItemOptions</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>TotalPrice</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredOrders.map(order => (
-                        <tr key={order._id}>
-                            <td>{formatDate(order.OrderDate)}</td>
-                            <td>
-                                {order.Type === 1 ? 'Dine-in' :
-                                order.Type === 2 ? 'Take-out' :
-                                'Delivery'}
-                            </td>
-                            <td>{order.AccountDisplayName}</td>
-                            <td>
-                                {order.Items.map(item =>
-                                    <div id={item._id}>
-                                        {item.MenuID.Name}
-                                    </div>
-                                )}
-                            </td>
-                            <td>
-                                {order.Items.map((item, index) => (
-                                    <div key={index}>
-                                        {item.ItemOptions.map(option => (
-                                            <div key={option.Name}>{option.Name}: {option.Value}</div>
-                                        ))}
-                                    </div>
-                                ))}
-                            </td>
-                            <td>{order.Items.map(item => <div>{item.Quantity}</div>)}</td>
-                            <td>{order.Items.map(item => <div>{item.Price.toFixed(2)}</div>)}</td>
-                            <td>${order.TotalPrice.toFixed(2)}</td>
+                <h2>{t('Order.Order Search')}</h2>
+                <div>
+                    <label>
+                        {t('Order.Type')}:
+                        <select onChange={(e) => setTypeFilter(e.target.value)} value={typeFilter}>
+                            <option value="">{t('Order.All')}</option>
+                            <option value="1">{t('Order.Dine-in')}</option>
+                            <option value="2">{t('Order.Take-out')}</option>
+                            <option value="3">{t('Order.Delivery')}</option>
+                        </select>
+                    </label>
+                    <label>
+                        {t('Order.Order Date')}:
+                        <input
+                            type="date"
+                            onChange={(e) => setDateFilter(e.target.value)}
+                            value={dateFilter}
+                        />
+                    </label>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{t('Order.OrderDate')}</th>
+                            <th>{t('Order.Type')}</th>
+                            <th>{t('Order.DisplayName/TableName')}</th>
+                            <th>{t('Order.Items')}</th>
+                            <th>{t('Order.ItemOptions')}</th>
+                            <th>{t('Order.Quantity')}</th>
+                            <th>{t('Order.Price')}</th>
+                            <th>{t('Order.TotalPrice')}</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {filteredOrders.map(order => (
+                            <tr key={order._id}>
+                                <td>{formatDate(order.OrderDate)}</td>
+                                <td>
+                                    {order.Type === 1 ? t('Order.Dine-in') :
+                                     order.Type === 2 ? t('Order.Take-out') :
+                                                       t('Order.Delivery')}
+                                </td>
+                                <td>{order.AccountDisplayName}</td>
+                                <td>
+                                    {order.Items.map(item =>
+                                        <div id={item._id}>
+                                            {t(`Food.${item.MenuID.Name}`)}
+                                        </div>
+                                    )}
+                                </td>
+                                <td>
+                                    {order.Items.map((item, index) => (
+                                        <div key={index}>
+                                            {item.ItemOptions.map(option => (
+                                                <div key={option.Name}>{t(`FoodOptions.${option.Name}`)}: {t(`FoodOptions.${option.Value}`)}</div>
+                                            ))}
+                                        </div>
+                                    ))}
+                                </td>
+                                <td>{order.Items.map(item => <div>{item.Quantity}</div>)}</td>
+                                <td>{order.Items.map(item => <div>{item.Price.toFixed(2)}</div>)}</td>
+                                <td>${order.TotalPrice.toFixed(2)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </> 
     );
 }
 

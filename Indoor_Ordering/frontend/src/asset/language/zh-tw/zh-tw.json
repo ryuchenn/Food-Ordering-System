@@ -1,0 +1,122 @@
+{
+    "Common": 
+    {
+        "hello": "你好",
+        "RestaurantName":"OMG 日式餐廳",
+        "Table": "桌號",
+        "Main Course": "主餐",
+        "Side": "配餐",
+        "Drink": "飲料",
+        "Other": "其他",
+        "Price": "價格"
+    },
+    "MenuDetail": 
+    {
+        "Add-ons": "加購",
+        "Price": "價格",
+        "Add To Cart": "加入購物車",
+        "Items added to cart": "已加入購物車",
+        "Failed to add items to cart": "加入失敗",
+        "Please Login!": "請登入"
+    },
+    "User": 
+    {
+        "Register": "註冊",
+        "Username": "帳號",
+        "Display Name(Preffered Name)": "綽號",
+        "Password": "密碼",
+        "Login": "登入",
+        "Login successfully.": "登入成功",
+        "Registration successful! Please log in.": "註冊成功！請登入",
+        "Logged out successfully.": "登出成功！"
+    },
+    "TopNavBar": 
+    {
+        "Home": "首頁",
+        "Cart": "購物車",
+        "AddMenuItem": "新增商品",
+        "UnPaidOrder": "訂單",
+        "OrderSearch": "歷史訂單",
+        "Register": "註冊",
+        "Login": "登入",
+        "Logout": "登出"
+    },
+    "Food": 
+    {
+        "Ramen": "拉麵",
+        "Gyudon": "牛丼",
+        "Sushi": "壽司",
+        "Dumpling": "餃子",
+        "Cola": "可樂",
+        "Sake": "清酒",
+        "Rice": "白飯"
+    }, 
+    "FoodOptions": 
+    {
+        "Noodle": "麵條",
+        "Spicy": "辣度",
+        "Meat": "拉麵",
+        "Thin": "細的",
+        "Thick": "粗的",
+        "None": "無",
+        "Pork": "豬肉",
+        "Beef": "牛肉",
+        "Chicken": "雞肉"
+    }, 
+    "Cart": 
+    {
+        "Cart": "購物車",
+        "SubTotal": "小計",
+        "Tax": "消費稅",
+        "Total": "總計",
+        "Place Order": "下單",
+        "Quantity": "數量",
+        "Price": "價格",
+        "Delete": "刪除",
+        "Order placed successfully!": "下單成功！"
+    },
+    "AddMenuItem":
+    {
+        "Name": "產品名稱",
+        "Main Course": "主餐",
+        "Side": "配餐",
+        "Drink": "飲料",
+        "Other": "其他",
+        "Add-On": "加購",
+        "Description": "產品描述",
+        "Options": "產品細項(辣度、大小...)",
+        "Option Name": "選項名稱",
+        "Value": "選項值",
+        "Default Value": "預設值",
+        "Add Option": "增加選項",
+        "Add Menu Item": "新增",
+        "Add Value": "新增值",
+        "Remove Option": "刪除選項",
+        "Quantity": "數量",
+        "Price": "價格",
+        "Menu item added successfully!": "已添加至菜單",
+        "Failed to add menu item!": "無法添加至菜單"
+    },
+    "Order":
+    {
+        "Unpaid Orders": "用戶訂單",
+        "Type": "訂單類型",
+        "Order Date": "下單日期",
+        "OrderDate": "下單日期",
+        "Order Search": "歷史訂單",
+        "DisplayName/TableName": "用戶名/桌號",
+        "Items": "餐點名稱",
+        "ItemOptions": "餐點細項",
+        "Quantity": "數量",
+        "Price": "價格",
+        "TotalPrice": "總價",
+        "Actions": "結帳",
+        "Mark as Paid": "結單",
+
+        "All": "全部",
+        "Dine-in": "內用",
+        "Take-out": "自行取餐",
+        "Delivery": "外帶"
+
+    }
+}

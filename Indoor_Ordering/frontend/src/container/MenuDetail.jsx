@@ -2,8 +2,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import API from '../API/backend';
 import { useParams } from 'react-router-dom';
 import AuthContext from '../utils/auth/AuthContext';
+import { useTranslation } from "react-i18next";
+import Sider from '../component/Sider';
 
 function MenuDetail() {
+    const { t } = useTranslation();
     const { id } = useParams();
     const [menuItem, setMenuItem] = useState(null);
     const [quantity, setQuantity] = useState(0);
@@ -74,61 +77,64 @@ function MenuDetail() {
 
         if (user){
             API.post('/api/cart/add', { AccountID: user._id, Items: cartItems })
-               .then(() => alert('Items added to cart'))
-               .catch(err => alert('Failed to add items to cart'));
+               .then(() => alert(t('Items added to cart')))
+               .catch(err => alert(t('Failed to add items to cart')));
         }
         else{
-            alert('Please Login!')
+            alert(t('Please Login!'))
         }
     };
 
     if (!menuItem) return <div>Loading...</div>;
 
     return (
-        <div className="menu-detail">
-            <h2>{menuItem.Name}</h2>
-            <p>{menuItem.Description}</p>
-            <p>Price: ${menuItem.Price}</p>
-            <img src={`data:image/png;base64,${menuItem.Image}`} alt={menuItem.Name} />
+        <>
+            <Sider></Sider>
+            <div className="menu-detail">
+                <h2>{t(`Food.${menuItem.Name}`)}</h2>
+                <p>{menuItem.Description}</p>
+                <p>{t('MenuDetail.Price')}: ${menuItem.Price}</p>
+                <img src={`data:image/png;base64,${menuItem.Image}`} alt={menuItem.Name} />
 
-            <div className="customization">
-                {menuItem.Options.map(option => (
-                    <div key={option.Name}>
-                        <label>{option.Name}:</label>
-                        <select
-                            value={customOptions[option.Name] || option.Default}
-                            onChange={(e) => handleOptionChange(option.Name, e.target.value)}
-                        >
-                            {option.Values.map(value => (
-                                <option key={value} value={value}>{value}</option>
-                            ))}
-                        </select>
-                    </div>
-                ))}
+                <div className="customization">
+                    {menuItem.Options.map(option => (
+                        <div key={option.Name}>
+                            <label>{t(`FoodOptions.${option.Name}`)}:</label>
+                            <select
+                                value={customOptions[option.Name] || option.Default}
+                                onChange={(e) => handleOptionChange(option.Name, e.target.value)}
+                            >
+                                {option.Values.map(value => (
+                                    <option key={value} value={value}>{t(`FoodOptions.${value}`)}</option>
+                                ))}
+                            </select>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="quantity">
+                    <button onClick={() => handleQuantityChange(-1)}>-</button>
+                    <span>{quantity}</span>
+                    <button onClick={() => handleQuantityChange(1)}>+</button>
+                </div>
+
+                <div className="addons">
+                    <h3>{t('MenuDetail.Add-ons')}</h3>
+                    {addons.map(addon => (
+                        <div key={addon._id} className="addon-item">
+                            <span>{t(`Food.${addon.Name}`)} ${addon.Price}</span>
+                            <button onClick={() => handleAddonQuantityChange(addon._id, -1)}>-</button>
+                            <span>{addonQuantities[addon._id] || 0}</span>
+                            <button onClick={() => handleAddonQuantityChange(addon._id, 1)}>+</button>
+                        </div>
+                    ))}
+                </div>
+
+                <footer className="menu-footer">
+                    <button onClick={handleAddToCart}>{t('MenuDetail.Add To Cart')}</button>
+                </footer>
             </div>
-
-            <div className="quantity">
-                <button onClick={() => handleQuantityChange(-1)}>-</button>
-                <span>{quantity}</span>
-                <button onClick={() => handleQuantityChange(1)}>+</button>
-            </div>
-
-            <div className="addons">
-                <h3>Add-ons</h3>
-                {addons.map(addon => (
-                    <div key={addon._id} className="addon-item">
-                        <span>{addon.Name} ${addon.Price}</span>
-                        <button onClick={() => handleAddonQuantityChange(addon._id, -1)}>-</button>
-                        <span>{addonQuantities[addon._id] || 0}</span>
-                        <button onClick={() => handleAddonQuantityChange(addon._id, 1)}>+</button>
-                    </div>
-                ))}
-            </div>
-
-            <footer className="menu-footer">
-                <button onClick={handleAddToCart}>Add To Cart</button>
-            </footer>
-        </div>
+        </>
     );
 }
 
