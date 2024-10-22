@@ -45,7 +45,7 @@ function Menu({ menuItems }) {
     let displayedCategories = [];
     return (
         <>
-            <div className="menu">
+            <div>
                 {sortedMenuItems.map(item => {
                     const categoryTitle = getCategoryTitle(item.Category);
                     const shouldDisplayTitle = !displayedCategories.includes(item.Category);
@@ -55,17 +55,22 @@ function Menu({ menuItems }) {
                     }
 
                     return (
-                        <div key={item._id} id={getCategoryId(item.Category)}>
+                        <>
+                            {shouldDisplayTitle && <h2 className='MenuTitle'>{categoryTitle}</h2>}
+                            <div className='Menu' key={item._id} id={getCategoryId(item.Category)}>
                             {/* Only display the title once when output all result */}
-                            {shouldDisplayTitle && <h2>{categoryTitle}</h2>}
-                            
-                            <div className="menu-item" onClick={() => handleItemClick(item._id)}>
-                                <img src={item.Image} alt={item.Name} />
-                                <h3>{t(`Food.${item.Name}`)}</h3>
-                                <p>{item.Description}</p>
-                                <p>{t('Common.Price')}: ${item.Price}</p>
+                                <div className="MenuItem" onClick={() => handleItemClick(item._id)}>
+                                    <img src={item.Image} alt={item.Name} />
+                                    <div>
+                                        <h3>{t(`Food.${item.Name}`)}</h3>
+                                        <p>{t('Common.Price')}: ${item.Price}</p>
+                                        <p>{item.Description}</p>
+                                    </div>
+                                    
+                                </div>
                             </div>
-                        </div>
+                        </>
+                        
                     );
                 })}
             </div>

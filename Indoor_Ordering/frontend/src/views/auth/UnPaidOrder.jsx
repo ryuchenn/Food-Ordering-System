@@ -64,8 +64,9 @@ function UnpaidOrder() {
     return (
         <>
             <Sider></Sider>
-            <div>
+            <div className='UnPaidOrder'>
                 <h2>{t('Order.Unpaid Orders')}</h2>
+                <h3><a href="/OrderSearch">{t('TopNavBar.OrderSearch')}</a></h3>
                 <table>
                     <thead>
                         <tr>

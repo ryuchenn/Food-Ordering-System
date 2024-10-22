@@ -90,48 +90,60 @@ function MenuDetail() {
     return (
         <>
             <Sider></Sider>
-            <div className="menu-detail">
+            <div className="MenuDetail">
                 <h2>{t(`Food.${menuItem.Name}`)}</h2>
-                <p>{menuItem.Description}</p>
                 <p>{t('MenuDetail.Price')}: ${menuItem.Price}</p>
+                <div>{menuItem.Description}</div>
                 <img src={`data:image/png;base64,${menuItem.Image}`} alt={menuItem.Name} />
 
-                <div className="customization">
+                <div className="Customization">
                     {menuItem.Options.map(option => (
-                        <div key={option.Name}>
-                            <label>{t(`FoodOptions.${option.Name}`)}:</label>
-                            <select
-                                value={customOptions[option.Name] || option.Default}
-                                onChange={(e) => handleOptionChange(option.Name, e.target.value)}
-                            >
-                                {option.Values.map(value => (
-                                    <option key={value} value={value}>{t(`FoodOptions.${value}`)}</option>
-                                ))}
-                            </select>
+                        <div className="Customization2" key={option.Name}>
+                            <div>
+                                <label>{t(`FoodOptions.${option.Name}`)}:</label>
+                            </div>
+                            <div>
+                                <select
+                                    value={customOptions[option.Name] || option.Default}
+                                    onChange={(e) => handleOptionChange(option.Name, e.target.value)}>
+                                    {option.Values.map(value => (
+                                        <option key={value} value={value}>{t(`FoodOptions.${value}`)}</option>
+                                    ))}
+                                </select>
+                            </div>
                         </div>
                     ))}
                 </div>
-
-                <div className="quantity">
-                    <button onClick={() => handleQuantityChange(-1)}>-</button>
-                    <span>{quantity}</span>
-                    <button onClick={() => handleQuantityChange(1)}>+</button>
+                
+                <div className='NenuDetailQuantity'>
+                    <div>
+                        {t('MenuDetail.Quantity')}:
+                    </div>
+                    <div>
+                        <button onClick={() => handleQuantityChange(-1)}>-</button>
+                        <span>{quantity}</span>
+                        <button onClick={() => handleQuantityChange(1)}>+</button>
+                    </div>
+                    
                 </div>
+                
 
-                <div className="addons">
+                <div className="Addons">
                     <h3>{t('MenuDetail.Add-ons')}</h3>
                     {addons.map(addon => (
-                        <div key={addon._id} className="addon-item">
+                        <div key={addon._id} className="AddonItem">
                             <span>{t(`Food.${addon.Name}`)} ${addon.Price}</span>
-                            <button onClick={() => handleAddonQuantityChange(addon._id, -1)}>-</button>
-                            <span>{addonQuantities[addon._id] || 0}</span>
-                            <button onClick={() => handleAddonQuantityChange(addon._id, 1)}>+</button>
+                            <div>
+                                <button onClick={() => handleAddonQuantityChange(addon._id, -1)}>-</button>
+                                <span>{addonQuantities[addon._id] || 0}</span>
+                                <button onClick={() => handleAddonQuantityChange(addon._id, 1)}>+</button>
+                            </div>
                         </div>
                     ))}
                 </div>
 
-                <footer className="menu-footer">
-                    <button onClick={handleAddToCart}>{t('MenuDetail.Add To Cart')}</button>
+                <footer className="MenuFooter">
+                        <button onClick={handleAddToCart}>{t('MenuDetail.Add To Cart')}</button>
                 </footer>
             </div>
         </>

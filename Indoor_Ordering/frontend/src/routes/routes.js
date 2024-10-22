@@ -9,6 +9,7 @@ import MenuDetail from "../container/MenuDetail"
 import OrderSearch from "../views/auth/OrderSearch"
 import UnPaidOrder from "../views/auth/UnPaidOrder"
 import QRCodeLogin from "../views/auth/QRCodeLogin"
+import TestLayout from "../views/TestLayout"
 
 export const mainRoutes = [
     {
@@ -30,19 +31,15 @@ export const mainRoutes = [
         path: "/error404",
         component: View404
     },
-]
-
-export const userRoutes = [
+    
     {
         path: "/cart",
         component: Cart
     },{
         path: "/menu/:id",
         component: MenuDetail
-    }
-]
+    },
 
-export const adminRoutes = [
     {
         path: "/AddMenuItem",
         component: AddMenuItem
@@ -52,5 +49,18 @@ export const adminRoutes = [
     },{
         path: "/UnPaidOrder",
         component: UnPaidOrder
+    },
+
+    {
+        path: "/test",
+        component: TestLayout
     }
+]
+
+export const userRoutes = [
+    
+]
+
+export const adminRoutes = [
+   
 ]

@@ -1,5 +1,372 @@
 body {
     margin: 0;
+}
+
+.CategoryBar{
+  display: block;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
+
+  overflow-x: scroll; /* scroll feature */
+  overflow-y: hidden; /* forbidden y-axis */
+  white-space: nowrap; 
+  -ms-overflow-style: none;  /* Internet Explorer, Edge hidden scroll bar */
+  scrollbar-width: none;  /* Firefox hidden scroll bar */
+}
+
+.CategoryBar a{
+  border: 1px solid #333;
+  text-decoration: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 10px;
+  border-radius: 10px;
+
+  flex-wrap: wrap;
+  width: 30%;
+}
+
+.CategoryBar::-webkit-scrollbar {
+  height: 8px;
+}
+
+
+.Table_Title{
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 35px;
+}
+
+.Table_Title h2{
+  font-size: 30px;
+  font-weight: bold;
+}
+.Table_Title span{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.Sider-Des{
+  display: flex;
+  justify-content: right;
+  border-bottom: 0.5px solid #333;
+  background: #a6c2f2;
+}
+.Sider-Des a{
+  padding-top: 15px;
+  padding-right: 10px;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* Menu */
+.Menu{
+  border: 0.5px solid #333;
+  margin: 10px;
+  margin-right: 150px; 
+  margin-left: 150px; 
+}
+
+.Menu:hover{
+  cursor: pointer;
+}
+
+.MenuTitle{
+  text-align: center;
+  padding-top: 70px;
+  font-size: 50px;
+}
+
+.MenuItem {
+  display: flex;
+
+}
+
+.MenuItem img {
+  width: 120px; 
+  height: 240px; 
+  object-fit: cover; 
+  margin-right: 20px; 
+}
+
+/* MenuDetail */
+
+.MenuDetail{
+  margin-top: 40px;
+  margin-left: 80px;
+  margin-right: 80px;
+  padding-left: 10px;
+  padding-right: 15px;
+  border: 1px solid #333;
+}
+
+.MenuDetail h2{
+  font-size: 35px;
+}
+.MenuDetail p{
+  font-size: 20px;
+  font-weight: bold;
+}
+.MenuDetail img{
+  font-size: 20px;
+  font-weight: bold;
+  width: 300px;
+  height: 300px;
+  object-fit: cover; 
+}
+
+.Customization2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 5px;
+}
+
+.MenuFooter{
+  padding-bottom: 50px;
+}
+
+.Addons h3{
+  font-size: 25px;
+  padding-top: 50px;
+  border-top: 1px solid #333;
+
+}
+.AddonItem{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 5px;
+}
+
+.MenuFooter{
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  
+}
+.NenuDetailQuantity{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+/* LoginForm */
+.LoginForm{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.LoginForm div{
+  padding-bottom: 20px;
+}
+.LoginForm div a{
+  padding-left: 20px;
+}
+
+.RegisterForm{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.RegisterForm div{
+  padding-bottom: 20px;
+}
+.RegisterForm div a{
+  padding-left: 20px;
+}
+
+.Cart{
+  margin-left: 8px;
+  margin-right: 8px;
+  
+}
+.Cart h2{
+  font-size: 30px;
+  text-align: center;
+}
+
+.CartItem {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  border: 0.5px solid #333;
+  padding-bottom: 20px;
+  margin-left: 100px;
+  margin-right: 150px;
+  margin-bottom: 15px;
+  background-color: #dfd4d4; 
+}
+
+.CartItem li{
+  list-style-type: none;
+  padding-top: 10px;
+}
+.CartItem1{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 7px;
+}
+.CartItem2{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.CartSummary{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  margin-bottom: 20px; 
+}
+.CartSummary div{
+  padding-bottom: 15px;
+}
+
+/* Add Menu Item */
+.AddMenuItem{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  align-items: center;
+}
+.AddMenuItem h2 {
+  text-align: center;
+}
+
+.AddMenuItem input{
+  margin: 10px;
+}
+
+.AddMenuItemButton button{
+  margin-bottom: 10px;
+}
+
+/* UnPaidOrder */
+.UnPaidOrder h2{
+  font-size: 30px;
+  text-align: center;
+}
+.UnPaidOrder h3{
+  font-size: 15px;
+  padding-right: 10px;
+  text-align: right;
+}
+.UnPaidOrder h3 a{
+  text-decoration: none;
+}
+
+
+.OrderSearch h2{
+  font-size: 30px;
+  text-align: center;
+}
+.OrderSearch h3{
+  font-size: 15px;
+  text-align: left;
+}
+.OrderSearch h3 a{
+  text-decoration: none;
+}
+
+/* UnPaidOrder && Order Search Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd; 
+}
+
+tr:hover {
+  background-color: #f5f5f5; 
+}
+
+thead th {
+  border-bottom: 2px solid #000; 
+  background-color: #f0f0f0; 
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9; 
+}
+
+/* Tablet */
+@media (min-width: 481px) and (max-width: 1024px){
+  .desktop-menu{
+      display: none;
   }
-  
-  
+  .tablet-menu{
+      display: block;
+  }
+  .mobile-menu{
+      display: none;
+  }
+  .CategoryBar::-webkit-scrollbar {
+    display: none;  /* Hidden the scroll bar */
+  }
+  .Menu{
+    margin-right: 50px; 
+    margin-left: 50px; 
+  }
+  .CartItem {
+    margin-left: 50px;
+    margin-right: 100px;
+  }
+  .MenuDetail{
+    margin-left: 45px;
+    margin-right: 55px;
+    padding-left: 15px;
+    padding-right: 20px;
+    border: 1px solid #333;
+  }
+
+}
+
+/* Phone */
+@media (max-width: 480px){
+
+  .desktop-menu{
+      display: none;
+  }
+  .tablet-menu{
+      display: none;
+  }
+  .mobile-menu{
+      display: block;
+  }
+
+  .CategoryBar{
+    flex-wrap: wrap;
+  }
+  .CategoryBar::-webkit-scrollbar {
+    display: none;  /* Hidden the scroll bar */
+  }
+  .Menu{
+    margin-right: 10px; 
+    margin-left: 10px; 
+  }
+  .CartItem {
+    margin-left: 0px;
+    margin-right: 30px;
+  }
+  .MenuDetail{
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 15px;
+    padding-right: 20px;
+    border: 1px solid #333;
+  }
+}
+

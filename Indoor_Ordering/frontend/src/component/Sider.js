@@ -1,71 +1,55 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import AuthContext from '../utils/auth/AuthContext';
 import { useTranslation } from "react-i18next";
+import '../style/global.css'
 
-function Sider() {
+function SiderBar() {
     const { t, i18n } = useTranslation();
-
-    const navigate = useNavigate();
     const { logout, user } = useContext(AuthContext);
+    // const [isSiderOpen, setSiderOpen] = useState(false);
 
     const handleLanguageChange = (e) => {
         const selectedLanguage = e.target.value;
         console.log(selectedLanguage)
         i18n.changeLanguage(selectedLanguage);
     };
-    const handleHome = () => {
-        navigate('/');
-    };
-
-    const handleLogin = () => {
-        navigate('/login');
-    };
-
-    const handleRegister = () => {
-        navigate('/register'); 
-    };
-
-    const handleCart = () => {
-        navigate(`/cart`); 
-    };
-    const handleAddMenu = () => {
-        navigate('/AddMenuItem'); 
-    };
-    const handleUnPaidOrder = () => {
-        navigate('/UnPaidOrder'); 
-    };
-    const handleOrderSearch = () => {
-        navigate('/OrderSearch'); 
-    };
 
     return (
-        <div className="sider">
-            <select onChange={handleLanguageChange} defaultValue="en">
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-                <option value="zh_tw">繁體中文</option>
-            </select>
-            <button onClick={handleHome}>{t('TopNavBar.Home')}</button>
-            <button onClick={handleCart}>{t('TopNavBar.Cart')}</button>
-            <button onClick={handleAddMenu}>{t('TopNavBar.AddMenuItem')}</button>
-            <button onClick={handleUnPaidOrder}>{t('TopNavBar.UnPaidOrder')}</button>
-            <button onClick={handleOrderSearch}>{t('TopNavBar.OrderSearch')}</button>
-            <button onClick={handleRegister}>{t('TopNavBar.Register')}</button>
+        <>
+            <div>
+                {/* Desktop & Tablet*/}
+                <div class="Sider-Des">
+                    <a href="/">{t('TopNavBar.Home')}</a>
+                    <a href='/cart'>{t('TopNavBar.Cart')}</a>
+
+                    <a href="/AddMenuItem">{t('TopNavBar.AddMenuItem')}</a>
+                    <a href="/UnPaidOrder">{t('TopNavBar.UnPaidOrder')}</a>
+
+                    {user ? (
+                        <>
+                            {/* <span>{t('Common.hello')}, {user.DisplayName}</span> */}
+                            <a href="/" onClick={logout}>{t('TopNavBar.Logout')}</a>
+                        </>
+                    ) : (
+                        <>
+                            <a id="sider-Des-lang" href="/login">{t('TopNavBar.Login')}</a>
+                        </>
+                    )}
+
+                    <select onChange={handleLanguageChange} defaultValue="en">
+                        <option value="en">English</option>
+                        <option value="fr">Français</option>
+                        <option value="zh_tw">繁體中文</option>
+                    </select>
+                </div>
+
+                {/* Mobile */}
+
+            </div>
             
-            {user ? (
-                <>
-                    <span>{t('Common.hello')}, {user.DisplayName}</span>
-                    <button onClick={logout}>{t('TopNavBar.Logout')}</button>
-                </>
-            ) : (
-                <>
-                <button onClick={handleLogin}>{t('TopNavBar.Login')}</button>
-                </>
-                
-            )}
-        </div>
+            
+        </>
     );
 }
 
-export default Sider;
+export default SiderBar;

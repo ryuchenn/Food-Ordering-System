@@ -17,22 +17,31 @@ function Login() {
     return (
         <>
             <Sider></Sider>
-            <form onSubmit={handleSubmit}>
-                <input
+            <form className='LoginForm' onSubmit={handleSubmit}>
+                <h2> {t('User.Login')} </h2>
+                <div>
+                    <input
                     type="text"
                     placeholder={t('User.Username')}
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-                <input
+                    required/>
+                </div>
+                <div>
+                    <input
                     type="password"
                     placeholder={t('User.Password')}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">{t('User.Login')}</button>
+                    required/>
+                </div>
+                <div>
+
+                    <button type="submit">{t('User.Login')}</button>
+                    <a href="/register">{t('TopNavBar.Register')}</a>
+                </div>
+                
+                
             </form>
         </>
     );

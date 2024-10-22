@@ -5,7 +5,8 @@ function CategoryBar() {
     const { t } = useTranslation();
 
     return (
-        <nav className="category-bar">
+        
+        <nav class="CategoryBar">
             <a href="#main-course">{t('Common.Main Course')}</a>
             <a href="#side">{t('Common.Side')}</a>
             <a href="#drink">{t('Common.Drink')}</a>

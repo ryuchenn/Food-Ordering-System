@@ -17,7 +17,8 @@
         "Add To Cart": "Ajouter au Panier",
         "Items added to cart": "Articles ajoutés au panier",
         "Failed to add items to cart": "Échec de l'ajout des articles au panier",
-        "Please Login!": "Veuillez vous connecter !"
+        "Please Login!": "Veuillez vous connecter !",
+        "Quantity": "Quantité"
     },
     "User": 
     {

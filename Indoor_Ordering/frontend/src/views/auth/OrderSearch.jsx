@@ -34,8 +34,9 @@ function OrderSearch() {
     return (
        <>
             <Sider></Sider>
-            <div>
+            <div className='OrderSearch'>
                 <h2>{t('Order.Order Search')}</h2>
+                <h3><a href="/UnPaidOrder">{t('TopNavBar.UnPaidOrder')}</a></h3>
                 <div>
                     <label>
                         {t('Order.Type')}:

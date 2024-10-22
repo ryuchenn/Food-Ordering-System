@@ -98,28 +98,44 @@ function Cart() {
     return (
         <>
             <Sider></Sider>
-            <div className="cart">
+            <div className="Cart">
                 <h2>{t('Cart.Cart')}</h2>
-                <ul>
-                    {cartItems.map(item => (
-                        <li key={item.MenuID} className="cart-item">
-                            <span>{t(`Food.${item.Name}`)} </span>
-                            <span>{t('Cart.Quantity')}
-                                <button onClick={() => handleUpdateQuantity(item.MenuID, item.Quantity - 1)}>-</button>
-                                    {item.Quantity}
-                                <button onClick={() => handleUpdateQuantity(item.MenuID, item.Quantity + 1)}>+</button>
-                            </span>
-                            <span>{t('Cart.Price')}: ${item.Price.toFixed(2)}</span>
-                            <button onClick={() => handleDeleteItem(item.MenuID)}>{t('Cart.Delete')}</button>
-                        </li>
-                    ))}
-                </ul>
-                <div className="cart-summary">
+                    <ul>
+                        {cartItems.map(item => (
+                            <div className="CartItem">
+                                <li key={item.MenuID}>
+                                    <div className="CartItem1">
+                                        <div>
+                                            <span>{t(`Food.${item.Name}`)} </span>
+                                        </div>
+                                        <div>
+                                            <span>{t('Cart.Price')}: ${item.Price.toFixed(2)}</span>
+
+                                        </div>
+                                    </div>
+                                    <div className="CartItem2">
+                                        <div>
+                                            <button onClick={() => handleDeleteItem(item.MenuID)}>{t('Cart.Delete')}</button>
+                                        </div>
+                                        <div>
+                                        <span>{t('Cart.Quantity')}
+                                            <button onClick={() => handleUpdateQuantity(item.MenuID, item.Quantity - 1)}>-</button>
+                                                {item.Quantity}
+                                            <button onClick={() => handleUpdateQuantity(item.MenuID, item.Quantity + 1)}>+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </div>
+                        ))}
+                    </ul>
+                <div className="CartSummary">
                     <div>{t('Cart.SubTotal')}: ${subtotal.toFixed(2)}</div>
                     <div>{t('Cart.Tax')}: ${tax.toFixed(2)}</div>
                     <div>{t('Cart.Total')}: ${total.toFixed(2)}</div>
                     <button onClick={handleCheckout}>{t('Cart.Place Order')}</button>
                 </div>
+
             </div>
         </>
         
