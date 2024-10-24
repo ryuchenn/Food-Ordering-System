@@ -74,9 +74,11 @@ function MenuDetail() {
                     Quantity: addonQuantities[addon._id],
                 })),
         ];
+        console.log("MenuDeatil")
 
         if (user){
-            API.post('/api/cart/add', { AccountID: user._id, Items: cartItems })
+
+            API.post('/api/cart/add', { AccountID: user._id ? user._id: sessionStorage.getItem('_id'), Items: cartItems })
                .then(() => alert(t('Items added to cart')))
                .catch(err => alert(t('Failed to add items to cart')));
         }

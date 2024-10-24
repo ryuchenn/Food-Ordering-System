@@ -15,7 +15,7 @@ const QRCodeLogin = () => {
         //TEST on PC: http://localhost:3000/QRCodeLogin?TableName=TableNo1
         //TEST on Mobile: http://Your Local IPv4 address:3000/QRCodeLogin?TableName=TableNo1 
         //                => http://192.168.2.20:3000/QRCodeLogin?TableName=TableNo1
-        // QRCode_Login(search.get('TableName')) 
+        QRCode_Login(search.get('TableName')) 
         localStorage.setItem('TableNumber', tableNo);
         navigate('/');
     }, []);

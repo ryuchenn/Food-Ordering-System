@@ -18,7 +18,7 @@ function Cart() {
     useEffect(() => {
 
         if(user){
-            API.get(`/api/cart/${user._id}`)
+            API.get(`/api/cart/${user._id ? user._id: sessionStorage.getItem('_id')}`)
             .then(res => {
                 setCartItems(res.data.items);
                 calculateSubtotal(res.data.items);
@@ -56,7 +56,7 @@ function Cart() {
         calculateSubtotal(updatedItems);
 
         API.post(`/api/cart/update`, {
-            AccountID: user._id,
+            AccountID: user._id ? user._id: sessionStorage.getItem('_id'),
             MenuID: menuId,
             Quantity: newQuantity,
         }).catch(err => console.log(err));
@@ -70,7 +70,7 @@ function Cart() {
 
         API.delete(`/api/cart/delete`, {
             data: { 
-                    AccountID: user._id,
+                    AccountID: user._id ? user._id: sessionStorage.getItem('_id'),
                     MenuID: menuId, 
                   },
         }).catch(err => console.log(err));
@@ -82,7 +82,7 @@ function Cart() {
         const selectedOptions = Object.entries(customOptions).map(([name, value]) => ({ Name: name, Value: value }));
         API.post('/api/order/submit', { 
                                         Type: 1, 
-                                        AccountID: user._id, 
+                                        AccountID: user._id ? user._id: sessionStorage.getItem('_id'), 
                                         Items: cartItems,
                                         Drivers: null,
                                         TotalPrice: parseFloat(total.toFixed(2)),

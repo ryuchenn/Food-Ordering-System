@@ -6,7 +6,7 @@ function CategoryBar() {
 
     return (
         
-        <nav class="CategoryBar">
+        <nav className="CategoryBar">
             <a href="#main-course">{t('Common.Main Course')}</a>
             <a href="#side">{t('Common.Side')}</a>
             <a href="#drink">{t('Common.Drink')}</a>

@@ -56,10 +56,10 @@ router.post('/login', async (req, res) => {
 
         // Send token as HTTP-only cookie
         res.cookie('token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production', 
+            httpOnly: false,
+            secure: false,//process.env.NODE_ENV === 'production', 
             maxAge: 9000000, // 2 hour and 30 mins
-            sameSite: 'Lax',
+            sameSite: 'None',
         });
 
         res.status(200).json({ user: { _id: user._id, id: user._id, ID: user._id, SessionID: user.SessionID, Username: user.UserName, DisplayName: user.DisplayName,} });
@@ -71,7 +71,7 @@ router.post('/login', async (req, res) => {
 // Login (QR Code)
 router.post('/login/QRCode/:TableName', async (req, res) => {
     const { TableName } = req.params;
-
+    
     try {
         // Generate the 15 digits random string for SessionToken
         let SessionToken = "";
@@ -102,10 +102,10 @@ router.post('/login/QRCode/:TableName', async (req, res) => {
 
         // Send token as HTTP-only cookie
         res.cookie('token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production', 
+            httpOnly: false,
+            secure: false,//process.env.NODE_ENV === 'production', 
             maxAge: 9000000, // 2 hour and 30 mins
-            sameSite: 'Strict',
+            sameSite: 'None',
         });
 
         res.status(200).json({ user: { _id: QRCodeUser._id, id: QRCodeUser._id, ID: QRCodeUser._id, SessionID: QRCodeUser.SessionID, Username: QRCodeUser.UserName, DisplayName: QRCodeUser.DisplayName,} });
@@ -140,6 +140,5 @@ router.get('/check', async (req, res) => {
         res.status(401).json({ message: 'Invalid token' });
     }
 });
-
 
 module.exports = router;

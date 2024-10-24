@@ -25,7 +25,7 @@ function Home() {
 
   return (
     <>
-      <div class="Main">
+      <div className="Main">
         <Header />
         <div className="Table_Title">
           <img src={Logo} alt="Logo"></img>

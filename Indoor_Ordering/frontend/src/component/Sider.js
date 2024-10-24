@@ -18,7 +18,7 @@ function SiderBar() {
         <>
             <div>
                 {/* Desktop & Tablet*/}
-                <div class="Sider-Des">
+                <div className="Sider-Des">
                     <a href="/">{t('TopNavBar.Home')}</a>
                     <a href='/cart'>{t('TopNavBar.Cart')}</a>
 
@@ -28,7 +28,7 @@ function SiderBar() {
                     {user ? (
                         <>
                             {/* <span>{t('Common.hello')}, {user.DisplayName}</span> */}
-                            <a href="/" onClick={logout}>{t('TopNavBar.Logout')}</a>
+                            <a onClick={logout}>{t('TopNavBar.Logout')}</a>
                         </>
                     ) : (
                         <>

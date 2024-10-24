@@ -23,12 +23,6 @@ app.use((req, res, next) => {
     next();
 });
 
-/// TEST
-app.use((req, res, next) => {
-  console.log('TESTING Cookies: ', req.cookies.token); 
-  next();
-});
-
 //////////// MongoDB and Mongoose ////////////
 // const { RestaurantSchema } = require("./model/restaurant/Restaurant_md");
 const { AccountSchema } = require("./model/auth_md");

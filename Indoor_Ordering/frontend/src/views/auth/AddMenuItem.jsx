@@ -72,7 +72,7 @@ function AddMenuItem() {
     return (
         <>
             <Sider></Sider>
-            <form class='AddMenuItem' onSubmit={handleSubmit}>
+            <form className='AddMenuItem' onSubmit={handleSubmit}>
                 <h2>{t('AddMenuItem.Add Menu Item')}</h2>
                 <input type="text" placeholder={t('AddMenuItem.Name')} value={name} onChange={(e) => setName(e.target.value)} required />
                 <select value={category} onChange={(e) => setCategory(Number(e.target.value))}>
