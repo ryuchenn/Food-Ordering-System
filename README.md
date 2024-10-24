@@ -16,7 +16,7 @@ Simulating the operational model of Uber's commercial application, we have built
 - Basic RESTful API demonstration
 - Dine-In - Restaurant: Full-end Structure.  (`React`, `Node.js`, `MongoDB`)
 <div align="center">
-    <img src="server/Indoor_Ordering/other/git_image/readme/home.png" alt=“Home” />
+    <img src="Indoor_Ordering/git_image/readme/home.png" alt=“Home” />
 </div>
 - Food Delivery - Restaurant: One-page website, menu page, and add menu page (`EJS`, `Node.js`, `MongoDB`)
 <div align="center">
@@ -40,7 +40,7 @@ Simulating the operational model of Uber's commercial application, we have built
 ## Workflow
 - Dine-in System
 <div align="center">
-    <img src="server/Indoor_Ordering/other/git_image/readme/worflow.png" alt=“workflow” height="500" width="500"/>
+    <img src="Indoor_Ordering/git_image/readme/worflow.png" alt=“workflow” height="500" width="500"/>
 </div>
 
 - Food Delivery
@@ -127,12 +127,15 @@ Simulating the operational model of Uber's commercial application, we have built
     - Order: `/order/OrderHome`
 
 6. Register your account. There is sample at below.
-- `Dine-In`
+- `Dine-In`: Use register or QR Code login
     ```
     UserName: "a1"
     Preferred Name: "Test"
     Password: "Test@123"
     ```
+<div align="center">
+    <img src="Indoor_Ordering/git_image/testing_image/TableNo1.png" alt=“Table” height="250" width="250"/>
+</div>
 
 - `Food Delivery`
     ```
