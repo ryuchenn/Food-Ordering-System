@@ -14,11 +14,11 @@ Simulating the operational model of Uber's commercial application, we have built
 
 ## Features
 - Basic RESTful API demonstration
-- Dine-In - Restaurant: Full-end Structure.  (`React`, `Node.js`, `MongoDB`)
+- Dine-In (`React`, `Node.js`, `MongoDB`) - Full-end Structure. 
 <div align="center">
     <img src="Indoor_Ordering/git_image/readme/home.png" alt=“Home” />
 </div>
-- Food Delivery - Restaurant: One-page website, menu page, and add menu page (`EJS`, `Node.js`, `MongoDB`)
+- Food Delivery (`EJS`, `Node.js`, `MongoDB`) - One-page website, menu page, and add menu page
 <div align="center">
     <img src="server/public/other/basic_structure/Restaurant.png" alt=“Home” />
 </div>
@@ -40,7 +40,7 @@ Simulating the operational model of Uber's commercial application, we have built
 ## Workflow
 - Dine-in System
 <div align="center">
-    <img src="Indoor_Ordering/git_image/readme/worflow.png" alt=“workflow” height="500" width="500"/>
+    <img src="Indoor_Ordering/git_image/readme/workflow.png" alt=“workflow” height="500" width="500"/>
 </div>
 
 - Food Delivery
@@ -53,6 +53,7 @@ Simulating the operational model of Uber's commercial application, we have built
 
 1. 
 - Dine-in Ordering
+
     `React`
     ```bash
     npm install axios i18next react react-dom react-i18next react-router-dom react-scripts web-vitals
