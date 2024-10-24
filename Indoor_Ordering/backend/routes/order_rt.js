@@ -7,7 +7,7 @@ const Order = require("../model/order_md");
 const Session = require("../model/session_md");
 const { VerifyTokenFromCookie, SetUserInformation,} = require("../utils/Token");
 
-// Place an order
+// Cart: Place an order
 router.post('/submit', async (req, res) => {
     const { Type, AccountID, SessionID, Items, Drivers, TotalPrice } = req.body;
     try {
@@ -59,7 +59,7 @@ router.post('/:id/markAsPaid', async (req, res) => {
     }
 });
 
- // Mark as Done when the food has already given to the customer
+// UnPaidOrder: Mark as done when the food at checkbox has already given to the customer
 router.post('/item/:itemId/UpdateDone', async (req, res) => {
     const { itemId } = req.params;
     const { Done } = req.body;
@@ -76,20 +76,21 @@ router.post('/item/:itemId/UpdateDone', async (req, res) => {
     }
 });
 
-// Get the unpaid orders for the kitchen
+// Get the unpaid orders to the kitchen
 router.get('/unpaid', async (req, res) => {
     try {
          //  status=1=Unpaid, 2=Paid
         const orders = await Order.find({ Status: 1 })
                                   .populate('AccountID', 'UserName')
                                   .populate( {path: 'Items.MenuID'});
-        console.log(orders)
+
         res.status(200).json(orders);
     } catch (error) {
         res.status(500).json({ message: 'Failed to fetch orders', error });
     }
 });
 
+// Check the order history
 router.get('/ordercheck', async (req, res) => {
     const { status } = req.query; 
     try {

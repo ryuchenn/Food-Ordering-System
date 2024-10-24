@@ -30,10 +30,10 @@ router.get('/:accountId', async (req, res) => {
     }
 });
 
-// Add items data from MenuDetail page to Cart Collections
+// Add  data from MenuDetail page to Cart Collections
 router.post('/add', async (req, res) => {
     const { AccountID, Items } = req.body;
-    
+
     try {
         // Create a new cart document or update existing one for the user
         const cart = await Cart.findOneAndUpdate(
@@ -47,7 +47,7 @@ router.post('/add', async (req, res) => {
     }
 });
 
-// Update Cart Items Quantity by AccountID
+// Update Cart Quantity by AccountID
 router.post('/update', async (req, res) => {
     const { AccountID, MenuID, Quantity } = req.body;
     try {

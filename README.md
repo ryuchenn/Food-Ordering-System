@@ -1,23 +1,30 @@
 # Food Ordering System
 ## Introduction
+[Quick Demo in Dine-In System](https://youtu.be/yPkwjGVgtlk)
 This project aims to simulate the commercial application of Uber Eats and mobile ordering for dine-in service. 
-This project uses React.js, Node.js, Express, EJS, and MongoDB with Mongoose.
+This project uses `React.js`, `Node.js`, `Express`, `EJS`, and `MongoDB` with `Mongoose`.
 
-- Food Delivery (Path: ./server): 
-Simulating the operational model of Uber's commercial application, we have built a restaurant and an ordering website similar to Uber Eats. We simulate the entire process of delivering food, from placing orders on a delivery platform to having the delivery personnel bring the meals to customers.
-- Dine-in Ordering (Path: ./Indoor_Ordering): 
+- Dine-in Ordering (Path: `./Indoor_Ordering`): 
 When customers arrive at the restaurant, they can use their phones to scan the QR code corresponding to their table and place an order. Once the order is placed, the data is sent to MongoDB, where it presents the corresponding order, table number, and meals to the kitchen for preparation.
+
+- Food Delivery (Path: `./server`): 
+Simulating the operational model of Uber's commercial application, we have built a restaurant and an ordering website similar to Uber Eats. We simulate the entire process of delivering food, from placing orders on a delivery platform to having the delivery personnel bring the meals to customers.
+
 
 
 ## Features
 - Basic RESTful API demonstration
-- Restaurant: One-page website, menu page, and add menu page
+- Dine-In - Restaurant: Full-end Structure.  (`React`, `Node.js`, `MongoDB`)
 <div align="center">
-    <img src="server/public/other/basic_structure/Restaurant.png" alt=“Workflow” />
+    <img src="server/Indoor_Ordering/other/git_image/readme/home.png" alt=“Home” />
 </div>
-- Ordering systen: (login & registration, cart & checkout, order status)
+- Food Delivery - Restaurant: One-page website, menu page, and add menu page (`EJS`, `Node.js`, `MongoDB`)
 <div align="center">
-    <img src="server/public/other/basic_structure/Order.png" alt=“Workflow” />
+    <img src="server/public/other/basic_structure/Restaurant.png" alt=“Home” />
+</div>
+- Food Delivery - Ordering systen: (login & registration, cart & checkout, order status)
+<div align="center">
+    <img src="server/public/other/basic_structure/Order.png" alt=“Order” />
 </div>
 <div align="center">
     <img src="server/public/other/basic_structure/Order2.png" alt=“Order Detail” />
@@ -28,21 +35,61 @@ When customers arrive at the restaurant, they can use their phones to scan the Q
 <div align="center">
     <img src="server/public/other/basic_structure/Order4.png" alt=“Delivery2” />
 </div>
-- Dine-in systen: 
+
 
 ## Workflow
+- Dine-in System
+<div align="center">
+    <img src="server/Indoor_Ordering/other/git_image/readme/worflow.png" alt=“workflow” height="500" width="500"/>
+</div>
+
+- Food Delivery
 <div align="center">
     <img src="server/public/other/basic_structure/Workflow.png" alt=“Workflow” height="500" width="500"/>
 </div>
 
+
 ## Quick Start
 
-1. Install the libraries (`dotenv, express, mongoose, nodemon, jest, supertest, bcrypt, jsonwebtoken, ejs, cookie-parser, multer`):
+1. 
+- Dine-in Ordering
+    `React`
+    ```bash
+    npm install axios i18next react react-dom react-i18next react-router-dom react-scripts web-vitals
+    ```
+    
+    `Node.js`
+    ```bash
+    npm install dotenv bcrypt body-parser cookie-parser cors express jsonwebtoken mongoose morgan multer node-cron nodemon
+    ```
+    
+- Food Delivery
     ```bash
     npm install dotenv express mongoose nodemon jest supertest bcrypt jsonwebtoken ejs cookie-parser multer
     ```
 
 2. Set up environment variables:
+- Dine-In: 
+   - Create a `.env` file in the project root. Check `Folder Structure` topic at bottom.
+   - Add the following environment variables: You can add the IPv4 address rather than localhost (EX: `http://192.168.1.37:3000`) . Make sure close your VPN.
+    `React`
+     ```
+     REACT_APP_Backend_Host=http://YourIPAddress:Port
+     REACT_APP_Auth_API_Prefix=/auth
+     ```
+    
+  - Add the following environment variables:
+    `Node.js`
+     ```
+     DB_ConnectionString=YOUR_MongoDB_ConnectionString
+     DB_DEFAULT_PORT=YOUR_PORT
+     DB_USE=YOUR_DATABAS_ENAME
+     LOGGING_JWT_SECRET=Your_Secret_Key
+     NODE_ENV=production
+     Frontend_Setting=YourFrontEndAddressAndPort
+     ```
+     
+- Food Delivery:
    - Create a `.env` file in the project root. Check `Folder Structure` topic at bottom.
    - Add the following environment variables:
      ```
@@ -69,19 +116,32 @@ When customers arrive at the restaurant, they can use their phones to scan the Q
     npm start
     ```
 
-5. The server will run at `http://localhost:3005`. You can use a tool like `Postman` to interact with the API.
-- Account: /account/register
-- Restaurant: /restaurant/home
-- Order: /order/OrderHome
+5. Basic Router
+-   Dine-In: The server will run at `http://YourIPAddress:Port`. 
+    - Home: `/`
+    - Cart: `/Cart`
+    - Unpaid Order: `/UnPaidOrder`
+-   Food Delivery: The server will run at `http://localhost:3005`. You can use a tool like `Postman` to interact with the API.
+    - Account: `/account/register`
+    - Restaurant: `/restaurant/home`
+    - Order: `/order/OrderHome`
 
 6. Register your account. There is sample at below.
-```
-UserName: "TestTestTest"
-Password: "Test@123"
-Email: "Test@GBCEats.com"
-Phone: "437-123-4567"
-Address: "123 Dundas St, Toronto, ON"
-```
+- `Dine-In`
+    ```
+    UserName: "a1"
+    Preferred Name: "Test"
+    Password: "Test@123"
+    ```
+
+- `Food Delivery`
+    ```
+    UserName: "TestTestTest"
+    Password: "Test@123"
+    Email: "Test@GBCEats.com"
+    Phone: "437-123-4567"
+    Address: "123 Dundas St, Toronto, ON"
+    ```
 
 7. Enjoy!
 
@@ -117,17 +177,36 @@ Cart                    UpdateAt                    Date        TRUE        new 
 ```
 
 ## Folder Structure
-The basic structure in our project.
+The basic structure in my project.
 ```
-├── Indoor_Ordering/  # (Not Start Yet) Focusing on the in-house dining. It can also use in take-out situation.
+├── API_Docs     # API Router and Database Schema
+├── Indoor_Ordering/  # Focusing on the in-house dining. It can also use in take-out situation.
+│    ├── backend             # Node.js
+│    │   ├── model           # The collections of MongoDB
+│    │   ├── routes          # Endpoints
+│    │   ├── service         # Daily or Timer mission
+│    │   └── utils           # Common Function
+│    ├── frontend/src        # React
+│    │   ├── API             # API Frontend to Backend 
+│    │   ├── asset           # Font, Image, Language translation(Enlish, French, Chinese)
+│    │   ├── component       # Embed Form in Home page 
+│    │   ├── container       # Embed UI
+│    │   ├── routes          # Different kinds of endpoints
+│    │   ├── style           # Global CSS
+│    │   ├── utils           # Common Function
+│    │   ├── views           # Form
+│    │   ├── App.js          # Main
+│    │   ├── .env            # Environment Parameter
+│    │   ├── i18n.js         # Language Change Setting
+│    │   └── index.js  
+│    └── git_image          # Git Image
 └── OrderFlowManager/ #(Develop Order: Model -> Controller -> Routes -> app)
-    ├── API_Docs     # API Router and Database Schema
-    ├── config          # Config Setting
     ├── component       # UI element
     │   ├── core
     │   ├── driver
     │   ├── order
     │   └── restaurant
+    ├── config          # Config Setting
     ├── controller      # Responsible for handling user input and application logic.
     │   ├── core
     │   ├── driver

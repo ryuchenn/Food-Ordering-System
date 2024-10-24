@@ -9,7 +9,7 @@ const Menu = require("../model/menu_md");
 const Order = require("../model/order_md");
 const { VerifyTokenFromCookie, SetUserInformation,} = require("../utils/Token");
 
-// Get all menu items
+// Get all menu from Menu collection
 router.get('/', async (req, res) => {
     try {
         const menuItems = await Menu.find({Category: { $gte: 1, $lte: 4 }});
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Add new menu item
+// AddMenu Form:  Add new menu item
 router.post('/add', upload.single('Image'), async (req, res) => {
     const { Name, Category, Quantity, Price, Description, Options } = req.body;
     const Image = req.file ? req.file.buffer : null;
@@ -54,7 +54,7 @@ router.post('/add', upload.single('Image'), async (req, res) => {
     }
 });
 
-// Get add-ons (Category = 5)
+// MenuDetail: Get add-ons (Category = 5)
 router.get('/category5', async (req, res) => {
     try {
         const addons = await Menu.find({ Category: 5 });
@@ -67,7 +67,7 @@ router.get('/category5', async (req, res) => {
     }
 });
 
-// Get a single menu item by ID
+// MenuDetail: Get a single menu item by ID
 router.get('/:id', async (req, res) => {
     const menuItemId = req.params.id;
 

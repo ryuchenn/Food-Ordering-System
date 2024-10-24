@@ -35,7 +35,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// Login (Account)
+// Login (Registed Account)
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
     try {
@@ -68,7 +68,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Login (QR Code)
+// Login (Visitor by QR Code)
 router.post('/login/QRCode/:TableName', async (req, res) => {
     const { TableName } = req.params;
     
