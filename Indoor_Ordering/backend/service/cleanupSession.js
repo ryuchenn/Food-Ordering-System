@@ -1,13 +1,16 @@
-
+/** Clean the Account & Session data by QR code login visitor.
+ * 
+ */
 const cron = require('node-cron');
 const Session = require('../model/session_md');
+const Account = require('../model/auth_md');
 
 /** Clear the Account & Session in ceratin hour
  * 
  */
 async function ClearSession(){
     const now = new Date();
-
+    
     const expiredSessions = await Session.find({ ExpireAt: { $lt: now } });
     const expiredSessionIds = expiredSessions.map(session => session._id);
 
@@ -20,8 +23,6 @@ async function ClearSession(){
     } else {
         console.log('No expired sessions found.');
     }
-    // const result = await Session.deleteMany({ ExpireAt: { $lt: now } });
-
 }
 
 // Set the timer to delete the daily session (every 0:00 AM)
@@ -35,7 +36,7 @@ const cleanUpExpiredSessions1 = () => {
   });
 };
 
-// Clear the session every three hours
+// Clear the session function
 const cleanUpExpiredSessions2 = async() => {
       const now = new Date();
       try {

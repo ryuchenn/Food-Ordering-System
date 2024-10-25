@@ -37,9 +37,9 @@ app.use("/api/menu", require("./routes/menu_rt"));
 app.use("/api/order", require("./routes/order_rt"));
 
 //////////// Services ////////////
-// const {cleanUpExpiredSessions1, cleanUpExpiredSessions2} = require('./service/cleanupSession'); 
-// cleanUpExpiredSessions1(); // per day clear the QR Code login account
-// setInterval(cleanUpExpiredSessions2, 60 * 1000); // per three hours clear the session
+const {cleanUpExpiredSessions1, cleanUpExpiredSessions2} = require('./service/cleanupSession'); 
+cleanUpExpiredSessions1(); // per day clear the QR Code login account
+setInterval(cleanUpExpiredSessions2, 3 * 60 * 60 * 1000); // per three hours clear the session
 
 //////////// Testing(Unit Test) ////////////
 
@@ -47,7 +47,6 @@ app.use("/api/order", require("./routes/order_rt"));
 // app.listen(port, () => {
 //   console.log(`Server is running at http://localhost:${port}`);
 // });
-
 
 app.listen(port, '0.0.0.0',() => {
     console.log(`Server is running at http://0.0.0.0:${port}`);
